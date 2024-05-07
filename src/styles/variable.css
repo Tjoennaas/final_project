@@ -1,0 +1,19 @@
+
+
+:root {
+	--font-size-base: 20px;
+
+	--color-main: rgb(158, 249, 130);
+	--color-primary:#1D2423;
+	--color-secondary:#FEF9F9;
+	--color-tertiary:#778971;
+	
+
+	--border: 6rem;
+	
+
+	--spacing-small: 0.5rem;
+	--spacing-medium: 1rem;
+	--spacing-large: 2rem;
+
+}
