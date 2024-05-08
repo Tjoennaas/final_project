@@ -23,6 +23,8 @@ const validateSignUpForm = (
   return { errorStatus, signUpErrorStatus };
 };
 
+
+
 const removeSignUpErrorOnInput = (
   firstname,
   lastname,

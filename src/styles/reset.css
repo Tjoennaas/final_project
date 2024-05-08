@@ -8,17 +8,5 @@
 }
 
 
- ul {
- list-style-type: none; 
-	
-}
 
-button{
-	cursor: pointer;
-	padding-left: 0.5rem;
-	padding-right: 0.5rem;
 
-	background-color: var( --color-secondary);
-	border-radius: 2px solid var( --color-tertiary);
-	
-	}
