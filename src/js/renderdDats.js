@@ -1,6 +1,7 @@
 
-
-
+function renderData(images) {
+    const imagesContainer = document.querySelector(".images-container");
+    imagesContainer.innerText = " "; 
 
     images.forEach((image) => {
         const container = document.createElement("div");
@@ -37,7 +38,4 @@
         deleteButton.textContent = "Delete";
       
 
-
     
-
-        })
