@@ -1,4 +1,7 @@
 
+import { getFirestore, deleteDoc, doc } from 'firebase/firestore';
+import { getStorage, deleteObject, ref } from 'firebase/storage';
+
 function renderData(images) {
     const imagesContainer = document.querySelector(".images-container");
     imagesContainer.innerText = " "; 
@@ -38,4 +41,21 @@ function renderData(images) {
         deleteButton.textContent = "Delete";
       
 
-    
+        deleteButton.addEventListener('click', async () => {
+            const docRef = doc(getFirestore(), "images", image.id);
+            const storageRef = ref(getStorage(), image.storagePath);
+             
+            try {
+                await deleteDoc(docRef);
+                await deleteObject(storageRef);
+                container.remove();
+            } catch (error) {
+                console.error("Error removing image: ", error);
+                alert('Failed to delete image!');
+            }
+        });
+    });
+}
+
+
+export {renderData};
