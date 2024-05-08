@@ -15,7 +15,130 @@
 </head>
 <body>
    
+       
+  <header>
+    <h2>OnlyArt</h2>
+    </header>
+  
+  <span class=" navigation-button">
+  <img class="account-form-button" src="../src/assets/Frame15.png" alt="">
+  <img class="sign-out-button" src ="../src/assets/Frame16.png" alt="">
+  
+
+  <div class = "upload-container">
+  <button class="upload-toggleform"> + </button>
+  <div class = "upload-menu">
+   
+  <form class="upload-form">
+    <input type="file" class="image-input" accept="image/*" required>
+    <input type="text" class="title-input" placeholder="Enter image title" required>
+    <input type="text" class="price-input" data-base-price="10" value="10 USD" placeholder="Enter image price" required>
+    <input type="text" class="size-input" placeholder="Enter image size" required>
     
+    <p class="image-error"style="display: none;"></p> 
+    <button type="submit">Upload Image</button>
+    </form>
+  </div>
+  </div>
+  </span>
+  <div class="currency-container">
+    <button class="currency-toggle">Choose Currency</button>
+   <div class="currency-menu">
+      <div class="currency-option" data-currency="USD">USD</div>
+      <div class="currency-option" data-currency="EUR">EUR</div>
+      <div class="currency-option" data-currency="GBP">GBP</div>
+    </div>
+  </div>
+  </div>
+  </nav>
+  
+  <main>
+  <div class = "sign-in-form-container"> 
+    <div class="signin-menu">
+   <form class="sign-in-form">
+    <button class="sign-in-form-close">X</button>
+     <label for="email">Email<sup>*</sup></label>
+     <input type="email" name="email" class="email" />
+     <p class="email-error"></p>
+     <label for="password">Password<sup>*</sup></label>
+     <input type="password" name="password" class="password" />
+     <p class="password-error"></p>
+     <button class="sign-in-button">Sign in</button>
+       
+     <p class="sign-up-message">
+       Don't have an account? create one
+       <button class="signup-form-open">here</button>
+     </p>
+     <p class="error-message"></p>
+   </form>
+  
+       
+
+     <form class="sign-up-form">
+     <label for="firstname">Firstname<sup>*</sup></label>
+       <input type="text" name="firstname" class="firstname" required />
+  
+       <label for="lastname">Lastname<sup>*</sup></label>
+       <input type="text" name="lastname" class="lastname" required />
+  
+       <label for="sign-up-email">Email<sup>*</sup></label>
+       <input
+         type="email"
+         name="sign-up-email"
+         class="sign-up-email"
+         required
+       />
+       <label for="sign-up-password">Password<sup>*</sup></label>
+       <input
+         type="password"
+         name="sign-up-password"
+         class="sign-up-password"
+         required
+       />
+       <p class="sign-up-error">Error</p>
+       <button class="sign-up-button">Sign up</button>
+     </form>
+  
+    </div>
+   </div>
+
+  <div class="content-main-container">
+  <div class="search-section">
+  <input type="text" class="search-input" placeholder="Search images...">
+  <button class="search-button"> <img src="../src/assets/Group 1.png" alt=""></button> 
+
+        
+        <div class="accordion"> 
+          <button class="filter-toggle">Filter</button> 
+            <div class="filter-menu">
+
+        <select class="price-filter">
+          <option class="choose-price">Choose price...</option>
+          <option value="100-200$">100 - 200$</option>
+          <option value="200-300$">200 - 300$</option>
+        </select>
+                  
+                 
+                  <select class ="size">
+                      <option class="choose-size">Choose size..</option>
+                      <option value="30 x 30cm" class="size-smal">30 x 30cm</option>
+                      <option value="40 x 50cm" class="size-larg">40 x 50cm</option>
+                  </select>
+           
+  
+                  <select class="sorting">
+                      <option class="sorting">Sort..</option>
+                      <option value="price-low-to-high">Price low to high</option>
+                      <option value="price-high-to-low">Price high to low</option>
+                  </select> 
+             </div>
+        </div>
+  </div>
+  
+    <div class="images-container"></div>
+  </div>
+   
+  </main> 
 
 
 
