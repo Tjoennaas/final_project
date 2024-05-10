@@ -1,0 +1,50 @@
+
+
+
+.upload-toggleform{
+   border: 1px solid var(--color-main);
+   padding-left: var(--spacing-small);
+   padding-right: var(--spacing-small);
+   background-color: transparent;
+   margin-top: var(--spacing-medium);
+   height: 2.5rem;
+   width:  3rem;
+}
+
+.upload-menu{
+    display: none;
+}
+
+.upload-menu--visible{
+     position: absolute;
+    left: 6rem;
+    background-color: var(--color-primary);
+
+    display: flex;
+    border: 1px solid var(--color-main);
+    flex-direction: column;
+    padding: var(--spacing-medium);
+}
+
+.uploaded-image{
+    width: auto; 
+    height: auto; 
+    max-width: 50%; 
+    max-height: 50%; 
+}
+
+
+.upload-form input {
+  display: flex;
+  flex-direction: column; 
+}
+
+.upload-form input,
+.upload-form button {
+ margin-bottom: var(--spacing-small); 
+ width: 100%; 
+ padding: 8px 12px;
+ border: 1px solid #ccc; 
+ border-radius: 4px;
+ box-sizing: border-box;  
+}

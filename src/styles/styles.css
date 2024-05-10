@@ -1,0 +1,161 @@
+
+
+
+body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  h2 {
+    padding: var(--spacing-medium);
+  }
+  
+  nav {
+    flex-basis: 20%;
+    display: flex;
+    flex-direction: row;
+    gap: 30%;
+  
+  }
+  .navigation-button{
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing-medium);
+  }
+
+
+  /*---------------------------*/
+
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .account-form-button, 
+  .sign-out-button {  
+    height: 2.5rem;
+    width:  3rem;
+    margin-top: var(--spacing-medium);
+  }
+
+.sign-in-form {
+    margin-top: var(--spacing-large);
+    margin-right:var(--spacing-medium);
+    display: none;
+    flex-direction: column;
+    align-items: center; 
+    gap: var(--spacing-small);
+    border: 1px solid black;
+    padding: var(--spacing-medium);
+ }
+ 
+ .sign-up-form--visible {
+  margin-right:var(--spacing-medium); 
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  position: relative;
+  background-color: #fff;
+  top: -0.3rem;
+  gap: var(--spacing-small);
+  padding:var(--spacing-medium);
+}
+
+ .sign-up-form {
+   display:none;   
+ }  
+ 
+ .sign-in-form-container { 
+   display: none;
+ }
+
+ /*---------------------------*/
+
+ .email,
+.password {
+  height: var(--spacing-large);
+}
+.sign-in-button {
+  width: 8rem;
+  height: var(--spacing-large);
+}
+.email-error,
+.password-error,
+.sign-up-error {
+  visibility: hidden;
+}
+
+.content-main-container{
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+ }
+
+.search-input{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-top: var(--spacing-medium);
+  padding-left: 3rem;
+
+  height: var(--spacing-large);
+  border: 1px solid  #3114E5;
+}
+
+.search-button{
+  cursor: pointer;
+  height: 1.5rem;
+  position:relative;
+  top: -1.5rem;
+
+  padding-left: var(--spacing-medium);
+  padding-right: var(--spacing-medium);
+  border: none;
+  background-color: transparent;
+}
+
+/*--------------------------------------*/
+
+select {
+   cursor: pointer;
+   border: none;
+   padding: ;
+   margin: 0;
+   background-color: ;
+   border-bottom: 1px solid black;
+   width: 100%;
+  
+  }
+  
+  .filter-toggle {
+     text-align: center;
+     cursor: pointer;
+     background-color: #f4f4f4;
+     border: 1px solid  #3114E5;
+     background-color: transparent;
+     padding: 10px;
+     width: 100%;
+  }
+  
+  .filter-menu{
+     display: none;
+   
+  }
+  
+  .filter-menu--visible {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-large);
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+   
+  }
+  
+  /*----------------*/
+
+  
+  
