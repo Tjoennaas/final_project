@@ -1,0 +1,42 @@
+.account-form-button, 
+.sign-out-button {  
+  height: 2.5rem;
+  width:  3rem;
+  margin-top: var(--spacing-medium);
+}
+
+.sign-in-form {
+  margin-top: var(--spacing-large);
+  margin-right:var(--spacing-medium);
+  display: none;
+  flex-direction: column;
+  align-items: center; 
+  gap: var(--spacing-small);
+  border: 1px solid var(--color-main);
+  padding: var(--spacing-medium);
+}
+
+.sign-up-form--visible {
+   margin-right:var(--spacing-medium); 
+   display: flex;
+   flex-direction: column;
+   align-items: center; 
+   position: relative;
+   background-color: var(--color-secondary);
+   top: -0.3rem;
+   gap: var(--spacing-small);
+   padding:var(--spacing-medium);
+}
+
+.sign-in-button {
+  width: 8rem;
+  height: var(--spacing-large);
+}
+.sign-up-form {
+   display:none;   
+}  
+
+.sign-in-form-container { 
+  display: none;
+}
+
