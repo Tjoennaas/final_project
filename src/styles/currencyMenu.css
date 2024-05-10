@@ -1,2 +1,33 @@
 
+.currency-container {
+    position: relative;
+    border: 1px solid var(--color-main);
+  }
+  
+  
+  .currency-toggle {
+    padding: 0.5rem  1rem;
+    cursor: pointer;
+  }  
+  
+  .currency-menu {
+    display: none ;
+  }  
+
+  .currency-menu--visible {
+    display: flex;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+  }
+  
+  .currency-option {
+    padding: 8px 16px;
+    cursor: pointer;
+  }
+
+  .currency-option:hover {
+    background-color: var(--color-tertiary);
+  }
   
