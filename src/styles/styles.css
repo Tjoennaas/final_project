@@ -11,86 +11,36 @@ body {
   h2 {
     padding: var(--spacing-medium);
   }
-  
-  nav {
-    flex-basis: 20%;
-    display: flex;
-    flex-direction: row;
-    gap: 30%;
-  
-  }
-  .navigation-button{
-    display: flex;
+
+nav {
+    display: flex; 
+    flex-direction: row; 
+    align-items: center; 
+    padding: var(--spacing-medium);
+} 
+
+nav header {
+    flex-grow: 1; 
+} 
+ 
+.navigation-button {
+    display: flex; 
     flex-direction: row;
     gap: var(--spacing-medium);
-  }
-
-
-  /*---------------------------*/
+    align-items: center; 
+}
 
   main {
     display: flex;
     flex-direction: column;
   }
   
-  .account-form-button, 
-  .sign-out-button {  
-    height: 2.5rem;
-    width:  3rem;
-    margin-top: var(--spacing-medium);
-  }
-
-.sign-in-form {
-    margin-top: var(--spacing-large);
-    margin-right:var(--spacing-medium);
-    display: none;
+  .content-main-container{
+    display: flex;
     flex-direction: column;
-    align-items: center; 
-    gap: var(--spacing-small);
-    border: 1px solid black;
-    padding: var(--spacing-medium);
- }
+    width: 100%;
+  }
  
- .sign-up-form--visible {
-     margin-right:var(--spacing-medium); 
-     display: flex;
-     flex-direction: column;
-     align-items: center; 
-     position: relative;
-     background-color: #fff;
-     top: -0.3rem;
-     gap: var(--spacing-small);
-     padding:var(--spacing-medium);
- }
 
- .sign-up-form {
-   display:none;   
- }  
- 
- .sign-in-form-container { 
-   display: none;
- }
 
- /*---------------------------*/
 
- .email,
-.password {
-  height: var(--spacing-large);
-}
-.sign-in-button {
-  width: 8rem;
-  height: var(--spacing-large);
-}
-.email-error,
-.password-error,
-.sign-up-error {
-  visibility: hidden;
-}
-
-.content-main-container{
-   display: flex;
-   flex-direction: column;
-   width: 100%;
- }
-
-/*------------------------*/
