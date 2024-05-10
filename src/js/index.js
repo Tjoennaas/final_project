@@ -1,9 +1,23 @@
 
+
+
+
 import { firebaseConfig } from "./firebaseConfig";
+import {API_KEY} from "./key";
 
+import { initializeApp } from "firebase/app";
+import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import {   
+      getFirestore,
+      collection,
+      addDoc, 
+      getDocs,
+      query,
+      where,
+      doc,
+      setDoc,
+      getDoc 
+    } from "firebase/firestore";
 
-import { renderData } from "./renderdData";
-import { validateSignInForm, removeSignInErrorOnInput} from "./signInValidation";
-import {validateSignUpForm, removeSignUpErrorOnInput}from "./signUpValidation";
-import { imageValidationForm } from "./imageValidationForm";
-import{displayLoggedInState, displayLoggedOutState } from "./displayState";
+  import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'; 
+
