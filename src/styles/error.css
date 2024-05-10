@@ -1,0 +1,12 @@
+
+.email,
+.password {
+  height: var(--spacing-large);
+}
+.email-error,
+.password-error,
+.sign-up-error {
+  visibility: hidden;
+}
+
+
