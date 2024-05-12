@@ -1,5 +1,6 @@
 
  sup{
+
       color: var(--secondary-color);
  }
 
@@ -12,7 +13,7 @@
 }
 
 .sign-in-form-close {
-      cursor: pointer;
+      
       align-self: flex-end;
       margin-bottom: var(--spacing-small);
   
@@ -71,3 +72,4 @@ label{
     border: 1px solid var(--secondary-color);
     height: 1.5rem;
 }
+
