@@ -31,13 +31,6 @@ nav header {
 }
 
 
-
-/*
-  main {
-    display: flex;
-    flex-direction: column;
-  } */
-  
   .content-main-container{
     display: flex;
     flex-direction: column;
