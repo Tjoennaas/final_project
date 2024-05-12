@@ -1,29 +1,37 @@
 
 .currency-container {
-    position: relative;
-    border: 1px solid var(--color-main);
-  }
+  height: 2.5rem;
+  width:  3rem;
+  margin-top: 1rem;
+  position: relative;
+  border: 1px solid var(--color-main);
+  } 
   
-  
-  .currency-toggle {
-    padding: 0.5rem  1rem;
-    cursor: pointer;
+.currency-toggle {
+   background-color: transparent;
+   height: 2.5rem;
+   width:  3rem; 
+   cursor: pointer;
   }  
+
+  /*-----------------------*/
   
-  .currency-menu {
+.currency-menu {
     display: none ;
   }  
 
-  .currency-menu--visible {
+.currency-menu--visible {
     display: flex;
-    top: 100%;
+    flex-direction: column;
+    background-color: var(--color-secondary);
+   /* top: 100%;
     left: 0;
-    width: 100%;
-    z-index: 1;
+    width: 100%; 
+    z-index: ; */
   }
   
   .currency-option {
-    padding: 8px 16px;
+    padding: 8px 8px; 
     cursor: pointer;
   }
 

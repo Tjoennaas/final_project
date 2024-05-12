@@ -1,9 +1,11 @@
 
 
 :root {
-	--font-size-base: 20px;
+	
 
 	--color-main: #1D2423;
+	--secondary-color: #FF398C;
+
 	--color-primary:#3114E5;
 	--color-secondary:#FEF9F9;
 	--color-tertiary:#778971;

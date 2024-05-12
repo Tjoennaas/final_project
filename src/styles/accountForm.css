@@ -1,42 +1,72 @@
-.account-form-button, 
-.sign-out-button {  
-  height: 2.5rem;
-  width:  3rem;
-  margin-top: var(--spacing-medium);
-}
 
-.sign-in-form {
-  margin-top: var(--spacing-large);
-  margin-right:var(--spacing-medium);
-  display: none;
-  flex-direction: column;
-  align-items: center; 
-  gap: var(--spacing-small);
-  border: 1px solid var(--color-main);
-  padding: var(--spacing-medium);
-}
+ 
 
-.sign-up-form--visible {
-   margin-right:var(--spacing-medium); 
-   display: flex;
+.account-form-button,
+.sign-out-button{ 
+      cursor: pointer;
+      height: 2.5rem;
+      width:  3rem;
+      margin-top: var(--spacing-medium);
+} 
+
+
+.sign-in-form-close {
+      cursor: pointer;
+      align-self: flex-end;
+      margin-bottom: var(--spacing-small);
+  
+      border: var(--secondary-color) ;
+      color: var(--primary-color);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+  }
+
+/*------------------------------*/
+.sign-in-form-container{ 
+      display: none;        
+} 
+
+.sign-in-form{
+   display: none;   
+   margin: var(--spacing-medium);
    flex-direction: column;
    align-items: center; 
-   position: relative;
-   background-color: var(--color-secondary);
-   top: -0.3rem;
-   gap: var(--spacing-small);
-   padding:var(--spacing-medium);
-}
-
-.sign-in-button {
-  width: 8rem;
-  height: var(--spacing-large);
-}
-.sign-up-form {
-   display:none;   
+   gap: var(--spacing-small); 
+   border: 1px solid var(--color-primary);
+  padding: var(--spacing-medium); 
 }  
 
-.sign-in-form-container { 
-  display: none;
+
+/*-------------------*/
+
+.sign-up-form{
+      display:none;
+}  
+
+.sign-up-form--visible{
+      display: flex;
+      position: relative;
+      bottom: var(--spacing-medium);
+      flex-direction: column;
+      align-items: center; 
+      border: 1px solid var(--color-primary);
+      padding: var(--spacing-medium); 
+      margin-right: var(--spacing-medium); 
+      margin-left: var(--spacing-medium);
 }
 
+/*--------------------------------------*/
+
+
+.sign-in-form label,
+.sign-up-form--visible
+label{
+      margin-top: var(--spacing-medium);
+}
+
+.sign-in-form input ,
+.sign-up-form--visible input {
+    margin-top: var(--spacing-small);
+    border: 1px solid var(--secondary-color);
+    height: 1.5rem;
+}
