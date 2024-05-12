@@ -1,5 +1,7 @@
 
- 
+ sup{
+      color: var(--secondary-color);
+ }
 
 .account-form-button,
 .sign-out-button{ 
@@ -7,8 +9,7 @@
       height: 2.5rem;
       width:  3rem;
       margin-top: var(--spacing-medium);
-} 
-
+}
 
 .sign-in-form-close {
       cursor: pointer;
