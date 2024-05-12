@@ -47,7 +47,7 @@ function renderData(images) {
         titleElement.textContent = `Title: ${image.title}`;
         sizeElement.textContent = `Size: ${image.size}`;
         priceElement.textContent = `Price: ${basePrice.toFixed(2)} ${displayCurrency}`; 
-        deleteButton.textContent = "Remove";
+        deleteButton.textContent = "x";
       
 
         deleteButton.addEventListener('click', async () => {
