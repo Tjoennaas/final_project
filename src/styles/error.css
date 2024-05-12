@@ -1,7 +1,7 @@
 
 .email,
 .password {
-  height: var(--spacing-large);
+  height: var(--spacing-medium);
 }
 .email-error,
 .password-error,
