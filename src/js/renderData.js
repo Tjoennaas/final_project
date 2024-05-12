@@ -25,8 +25,7 @@ function renderData(images) {
         imageElement.classList.add("uploaded-image");
         deleteButton.classList.add("delete-button");
         priceElement.classList.add("price");
-        priceElement.setAttribute("data-basePrice", basePrice); // Attach data to the priceElement.
-       
+        priceElement.setAttribute("data-basePrice", basePrice); 
         container.append(
             imageElement,
             textContainer,
@@ -48,7 +47,7 @@ function renderData(images) {
         titleElement.textContent = `Title: ${image.title}`;
         sizeElement.textContent = `Size: ${image.size}`;
         priceElement.textContent = `Price: ${basePrice.toFixed(2)} ${displayCurrency}`; 
-        deleteButton.textContent = "Delete";
+        deleteButton.textContent = "Remove";
       
 
         deleteButton.addEventListener('click', async () => {
