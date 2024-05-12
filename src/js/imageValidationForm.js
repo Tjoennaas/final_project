@@ -15,4 +15,4 @@ function imageValidationForm(titleInput, descriptionInput, imageInput, imageErro
     return { errorStatus };
   }
   
-  export {imageValidationForm};
+  export {imageForm};
