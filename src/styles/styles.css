@@ -2,14 +2,20 @@
 
 body {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: x-large;
+    font-weight: 200;
+   
+   /* color:  var(--secondary-color); */
+    background-color: var(--secondary-color);
+    font-size: xx-large;
     width: 100%;
     height: 100vh;
+  
     display: flex;
     flex-direction: column;
     position: relative;
+    padding: 10px;
   }
-  
+ 
   h2 {
 
     padding: var(--spacing-medium);
@@ -17,12 +23,21 @@ body {
 
  
 nav {
+  /*background-color: rgb(234, 239, 240); */
+ /* background-color: rgb(32, 31, 31); */
+ /* background-color: rgb(159, 215, 194);*/
+  /*border-radius: 0.5rem;*/
+  background-color:  rgb(100, 102, 107);
+  color: rgb(78, 255, 78);
+  border-bottom: 10px solid var(--secondary-color);
+  /*background-color: rgb(169, 189, 186);*/
 
-    border: 1px solid var(--secondary-color);
+
+
     display: flex; 
     flex-direction: row; 
-    align-items: center; 
-    padding: var(--spacing-medium);
+    align-items: center;  
+    padding: var(--spacing-medium); 
 } 
 
 nav header {
@@ -43,10 +58,19 @@ nav header {
   }
 
   .frontpage-container{ 
+   /* color: rgb(225, 226, 226); */
+    /*color:  var(--secondary-color)  ; */
+    color: rgb(78, 255, 78);
     display: block;
-    color:var(--color-secondary);
-    border: 1px solid var(--secondary-color);
-    background-color: black;
+ /* color: rgb(178, 189, 200); */
+   /* border: 3px solid  var(--color-primary);*/
+   /* background-color: rgb(48, 44, 44);*/
+   
+   background-color:  rgb(100, 102, 107);
+   
+  
+ 
+
   }
 
 /*------------------------------*/
@@ -61,7 +85,7 @@ nav header {
 
    /* background-color:  var(--color-tertiary); */
    /* border: 1px solid var(--secondary-color) ;  */
-    border-radius: 0.5rem; 
+    border-radius: 0.2rem; 
     margin: 4rem; 
     padding: 1rem; 
     overflow: hidden;  
