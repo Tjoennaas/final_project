@@ -1,39 +1,33 @@
 
 
 body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 200;
-   
-   /* color:  var(--secondary-color); */
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    font-size: x-large;
     background-color: var(--secondary-color);
-    font-size: xx-large;
+ 
     width: 100%;
     height: 100vh;
   
     display: flex;
     flex-direction: column;
     position: relative;
-    padding: 10px;
+    padding: 0.6rem;
+  }
+  header, .heander-frontpage {
+    font-size: xx-large;
+    font-weight: 400;
+
   }
  
-  h2 {
-
+  .heander-frontpage {
     padding: var(--spacing-medium);
   }
 
- 
 nav {
-  /*background-color: rgb(234, 239, 240); */
- /* background-color: rgb(32, 31, 31); */
- /* background-color: rgb(159, 215, 194);*/
-  /*border-radius: 0.5rem;*/
-  background-color:  rgb(100, 102, 107);
+  background-color:  rgb(130, 126, 115);
   color: rgb(78, 255, 78);
-  border-bottom: 10px solid var(--secondary-color);
-  /*background-color: rgb(169, 189, 186);*/
-
-
-
+  border-bottom: 0.6rem solid var(--secondary-color);
     display: flex; 
     flex-direction: row; 
     align-items: center;  
@@ -58,18 +52,12 @@ nav header {
   }
 
   .frontpage-container{ 
-   /* color: rgb(225, 226, 226); */
-    /*color:  var(--secondary-color)  ; */
+
     color: rgb(78, 255, 78);
     display: block;
- /* color: rgb(178, 189, 200); */
-   /* border: 3px solid  var(--color-primary);*/
-   /* background-color: rgb(48, 44, 44);*/
-   
-   background-color:  rgb(100, 102, 107);
-   
-  
- 
+    border: 3px solid black;
+    background-color:  rgb(130, 126, 115);
+    padding: 5rem;
 
   }
 
@@ -78,46 +66,50 @@ nav header {
   .frontpage {
     margin-top: 6rem;
     display: flex; 
+    flex-direction: column;
     flex-wrap: wrap; 
-   justify-content: center; 
+    justify-content: center; 
     gap: 3rem;
     align-items: center; 
 
-   /* background-color:  var(--color-tertiary); */
-   /* border: 1px solid var(--secondary-color) ;  */
     border-radius: 0.2rem; 
-    margin: 4rem; 
+    margin: 2rem; 
     padding: 1rem; 
     overflow: hidden;  
   }
 
+  .frontpage-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 200%;
+    min-width: 60%; 
+  }
 
-.frontpage-image{
-  filter: drop-shadow(5px 5px 10px rgba(0,0,0,0.5)); 
+
+.frontpage-img img{
+    width: 200%;
+    margin: 10px; 
+    min-width: 60%; 
+}  
+
+.frontpage-text {
+  position: absolute;
+  top: 5rem;
+  max-width: 200%; 
+  text-align: center;
 }
 
-.frontpage-image img{
-  width: 30%;
-  height: auto; 
-  margin: 10px; 
-  
+@media (min-width: 768px) {
+  .frontpage-img {
+    width: 150%;
+    margin-left: -8rem;
+    display: flex;
+    align-self: start;
+    justify-content: start;
+  }
+  nav{
+    background-color: var(--color-main);
+  }
 }
-
-
-
-  
-
-         
-    
-  
-   
-    
-  
-    
-  
-    
-     
-  
-
-  
-   
