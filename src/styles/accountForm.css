@@ -7,16 +7,14 @@
 .account-form-button,
 .sign-out-button{ 
       cursor: pointer;
-     /* height: 2.5rem;
-      width:  3rem;   */
-      margin-top: 0.8rem; 
+      margin-top: 0.8rem;
+      display: block;
 }  
 
 .sign-in-form-close {
       
       align-self: flex-end;
       margin-bottom: var(--spacing-small);
-  
       border: var(--secondary-color) ;
       color: var(--primary-color);
       padding: 0.5rem 1rem;
@@ -39,7 +37,6 @@
   padding: var(--spacing-medium); 
   background-color:var(--color-secondary);
 }  
-
 
 /*-------------------*/
 
