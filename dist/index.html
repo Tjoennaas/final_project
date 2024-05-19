@@ -2,54 +2,56 @@
 <html lang="en">
 
 <head>
+
+  
     <meta charset="UTF-8">
   
-    <link rel="stylesheet" href="../src/styles/uploadImageForm.css">
-    <link rel="stylesheet" href="../src/styles/filterAndSearchButton.css">
+    <link rel="stylesheet" href="../src/styles/imageUploadForm.css">
+    <link rel="stylesheet" href="../src/styles/filterAndSearch.css">
     <link rel="stylesheet" href="../src/styles/currencyMenu.css">
     <link rel="stylesheet" href="../src/styles/accountForm.css">
-    <link rel="stylesheet" href="../src/styles/error.css">
-
+    <link rel="stylesheet" href="../src/styles/error.css"> 
+    <link rel="stylesheet" href="../src/styles/fonts.css"> 
     <link rel="stylesheet" href="../src/styles/reset.css">
     <link rel="stylesheet" href="../src/styles/variable.css">
-    <link rel="stylesheet" href="../src/styles/fonts.css"> 
-    <link rel="stylesheet" href="../src/styles/styles.css">
+    <link rel="stylesheet" href="../src/styles/styles.css">  
 
 
+  </head>
     <body>
       
     
       <nav>
       <header>
-        <h2>OnlyArt</h2>
+        <h1>OnlyArt</h1>
       </header>
       
       
       <span class=" navigation-button"> 
      
-      <img class="account-form-button" src="../src/assets/Frame15.png" alt="">
-      <img class="sign-out-button" src ="../src/assets/Frame16.png" alt="">
+      <img class="account-form-button" src="../src/assets/Frame15.svg" alt="">
+      <img class="sign-out-button" src ="../src/assets/Frame16.svg" alt="">
       
     
       <div class = "upload-container">
-      <button class="upload-toggleform"> + </button>
+      <button class="upload-toggleform">+</button>
       <div class = "upload-menu">
        
       <form class="upload-form">
         <input type="file" class="image-input" accept="image/*" required>
         <input type="text" class="title-input" placeholder="Enter image title" required>
-        <input type="text" class="price-input" data-base-price="10" value="10 USD" placeholder="Enter image price" required>
-        <input type="text" class="price-input" placeholder="Enter image price" required> 
-       <input type="text" class="size-input" placeholder="Enter image size" required>
+        <input type="text" class="size-input" placeholder="Enter image size" required>
+        <input type="text" class="price-input" value="  USD" required>
+     
         
-       <p class="image-error"style="display: none;"></p> 
+       <p class="image-error"></p> 
        <button type="submit">Upload Image</button>
        </form>
      </div>
      </div>
      
      <div class="currency-container">
-       <button class="currency-toggle">Currency</button>
+       <button class="currency-toggle">$</button>
       <div class="currency-menu">
          <div class="currency-option" data-currency="USD">USD</div>
          <div class="currency-option" data-currency="EUR">EUR</div>
@@ -59,16 +61,23 @@
      </div>
      </span>
      </nav>
-    
-     <div class ="frontpage">
 
-     </div>
+    <main class ="frontpage-container">
+     <div class ="frontpage"> 
+      
+      <div class="frontpage-text">
+    <h2>Create your own webgallery </h2>
+    <p>An easy way to show and sell your artwork. </p>
     </div>
+    </div>
+
+    </main>
+   <!-- </div> -->
     
     
-    <main>
-     <div class = "sign-in-form-container"> 
-       <div class="signin-menu">
+    
+       <div class = "sign-in-form-container"> 
+      <!-- <div class="signin-menu"> -->
       <form class="sign-in-form">
        <button class="sign-in-form-close">X</button>
         <label for="email">Email<sup>*</sup></label>
@@ -80,13 +89,13 @@
         <button class="sign-in-button">Sign in</button>
           
         <p class="sign-up-message">
-          Don't have an account? create one
+         create account
           <button class="signup-form-open">here</button>
         </p>
         <p class="error-message"></p>
       </form>
      
-        
+    
      <div class="sign-up-form-container"> 
         <form class="sign-up-form">
         <label for="firstname">Firstname<sup>*</sup></label>
@@ -114,13 +123,13 @@
            </form>
          </div>
        </div>
-    </div>
-     </main> 
+   <!-- </div> -->
+     
     
      <div class="content-main-container"> 
      <div class="search-section">
      <input type="text" class="search-input" placeholder="Search images...">
-     <button class="search-button"> <img src="../src/assets/Group 1.png" alt=""></button> 
+     <button class="search-button"> <img src="../src/assets/Frame14.svg" alt=""></button> 
     
            
            <div class="accordion">
@@ -151,7 +160,7 @@
      </div>
      
        <div class="images-container"></div>
-     </div>
+     </div>  
       
     
 
