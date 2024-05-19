@@ -22,7 +22,7 @@ import {
 import { validateSignInForm, removeErrorsOnInput } from "./signInValidation";
 import { validateSignUpForm, removeSignUpErrorOnInput } from "./signUpValidation";
 import { renderData } from "./renderData";
-import {imageForm} from "./imageForm"; 
+import {imageForm} from "./imageValidationForm"; 
 
 
 
