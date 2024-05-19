@@ -393,6 +393,7 @@ function applySortingAndFiltering(images) {
 }
 
 
+const frontpageContainer = document.querySelector (".frontpage-container");
 
 
 function displayLoggedInState() {
@@ -421,7 +422,7 @@ function displayLoggedOutState() {
 
 
 /*-------------------------------------------------------*/
-
+/*
 const frontpageContainer = document.querySelector (".frontpage-container");
 const frontpage = document.querySelector(".frontpage");
 
@@ -429,6 +430,7 @@ class CreateImage {
     constructor(src) {  
         this.src = src;
         
+
     }
 
     addImg(frontpage) {
@@ -446,7 +448,7 @@ class CreateImage {
 
 const frontpageImages = [
     new CreateImage("../src/assets/01.png"), 
-  /*  new CreateImage("../src/assets/02.png"), */
+    new CreateImage("../src/assets/02.png"), 
     new CreateImage("../src/assets/03.png"),
     new CreateImage("../src/assets/04.png"),
     new CreateImage("../src/assets/05.png"),
@@ -456,7 +458,7 @@ const frontpageImages = [
 frontpageImages.forEach(frontpageImage => {
     frontpageImage.addImg(frontpage);
 });
-
+*/
 
 
 
