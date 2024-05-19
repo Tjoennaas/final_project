@@ -1,6 +1,8 @@
 
 
 body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: x-large;
     width: 100%;
     height: 100vh;
     display: flex;
@@ -9,10 +11,14 @@ body {
   }
   
   h2 {
+
     padding: var(--spacing-medium);
   }
 
+ 
 nav {
+
+    border: 1px solid var(--secondary-color);
     display: flex; 
     flex-direction: row; 
     align-items: center; 
@@ -30,14 +36,64 @@ nav header {
     align-items: center; 
 }
 
-
   .content-main-container{
     display: flex;
     flex-direction: column;
     width: 100%;
   }
- 
+
+  .frontpage-container{ 
+    display: block;
+    color:var(--color-secondary);
+    border: 1px solid var(--secondary-color);
+    background-color: black;
+  }
+
+/*------------------------------*/
+
+  .frontpage {
+    margin-top: 6rem;
+    display: flex; 
+    flex-wrap: wrap; 
+   justify-content: center; 
+    gap: 3rem;
+    align-items: center; 
+
+   /* background-color:  var(--color-tertiary); */
+   /* border: 1px solid var(--secondary-color) ;  */
+    border-radius: 0.5rem; 
+    margin: 4rem; 
+    padding: 1rem; 
+    overflow: hidden;  
+  }
+
+
+.frontpage-image{
+  filter: drop-shadow(5px 5px 10px rgba(0,0,0,0.5)); 
+}
+
+.frontpage-image img{
+  width: 30%;
+  height: auto; 
+  margin: 10px; 
+  
+}
 
 
 
+  
 
+         
+    
+  
+   
+    
+  
+    
+  
+    
+     
+  
+
+  
+   

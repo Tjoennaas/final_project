@@ -16,7 +16,13 @@ function renderData(images) {
         const priceElement = document.createElement("p");
         const displayCurrency = image.currency || "USD";  
         const basePrice = parseFloat(image.price);  //basePrice: Store the numeric form of the image's price
-                                                    // parseFloat: converts the price from a string format to a float (numeric format).
+                                                   // parseFloat: converts the price from a string format to a float (numeric format).
+         imageElement.src = image.url;
+         imageElement.alt = image.title; 
+         titleElement.textContent = `Title: ${image.title}`;
+         sizeElement.textContent = `Size: ${image.size}`;
+         priceElement.textContent = `Price: ${basePrice.toFixed(2)} ${displayCurrency}`; 
+         deleteButton.textContent = "x";                                   
         
         container.classList.add("container");                                        
         textContainer.classList.add("text-container");
@@ -26,30 +32,26 @@ function renderData(images) {
         deleteButton.classList.add("delete-button");
         priceElement.classList.add("price");
         priceElement.setAttribute("data-basePrice", basePrice); 
+       
+       
+        imagesContainer.appendChild(
+            container
+        );
+
         container.append(
             imageElement,
             textContainer,
-            deleteButton
+           /* deleteButton */
         );
 
         textContainer.append(
             titleElement,
             sizeElement,
-            priceElement
+            priceElement,
+            deleteButton
         );
 
-        imagesContainer.appendChild(
-            container
-        );
-
-        imageElement.src = image.url;
-        imageElement.alt = image.title; 
-        titleElement.textContent = `Title: ${image.title}`;
-        sizeElement.textContent = `Size: ${image.size}`;
-        priceElement.textContent = `Price: ${basePrice.toFixed(2)} ${displayCurrency}`; 
-        deleteButton.textContent = "x";
-      
-
+        // ref.  https://firebase.google.com/docs/storage/web/delete-files#delete_a_file
         deleteButton.addEventListener('click', async () => {
             const docRef = doc(getFirestore(), "images", image.id);
             const storageRef = ref(getStorage(), image.storagePath);

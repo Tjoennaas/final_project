@@ -5,19 +5,8 @@ import {API_KEY} from "./key";
 
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
-import {   
-      getFirestore,
-      collection,
-      addDoc, 
-      getDocs,
-      query,
-      where,
-      doc,
-      setDoc,
-      getDoc 
-    } from "firebase/firestore";
-
-  import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage"; 
+import {  getFirestore, collection, addDoc, getDocs, query, where, doc, setDoc, getDoc } from "firebase/firestore";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage"; 
 
 import { validateSignInForm, removeErrorsOnInput } from "./signInValidation";
 import { validateSignUpForm, removeSignUpErrorOnInput } from "./signUpValidation";
@@ -25,12 +14,10 @@ import { renderData } from "./renderData";
 import {imageForm} from "./imageValidationForm"; 
 
 
-
-
 const app = initializeApp(firebaseConfig);
-const authService = getAuth(app);
-const database = getFirestore(app);
-const storage = getStorage(app);
+const authService = getAuth(app);  //https://firebase.google.com/docs/auth/web/start#web-modular-api_2
+const database = getFirestore(app); 
+const storage = getStorage(app);  //https://firebase.google.com/docs/storage/web/upload-files
 
 
 const emailInput = document.querySelector(".email");
@@ -79,6 +66,7 @@ const uploadContainer = document.querySelector(".upload-container");
 const mainContentContainer = document.querySelector(".content-main-container");
 const uploadForm = document.querySelector(".upload-form");
 
+
 const titleInput = document.querySelector(".title-input");
 const priceInput = document.querySelector(".price-input");
 const sizeInput = document.querySelector(".size-input");
@@ -97,17 +85,16 @@ currencyOptions.forEach(option => {
     currentCurrency = selectedCurrency;
   if(authService.currentUser) {
     updateCurrencyInFirestore(
-    authService.currentUser.uid,
+    authService.currentUser.uid, //https://firebase.google.com/docs/auth/web/manage-users
     currentCurrency);
     }
 
     updatePrices(currentCurrency, currencyRates);
-   currencyOptions.forEach(opt => opt.classList.remove("selected")); 
+    currencyOptions.forEach(opt => opt.classList.remove("selected")); 
     currencyOptions.value = selectedCurrency; 
 
   });
 }); 
-
 
 
 async function fetchCurrencyRates() {
@@ -123,7 +110,7 @@ async function fetchCurrencyRates() {
         updatePrices(currentCurrency, currencyRates);
       }
     } catch (error) {
-      console.error('Error fetching currency rates:', error);
+      console.error("Error fetching currency rates", error);
     }
   }
 
@@ -140,14 +127,15 @@ async function loadUserCurrencySetting() {
 }
 
 async function updatePrices(newCurrency, rates) {
-  document.querySelectorAll('.price').forEach(priceElement => {
-    const basePrice = parseFloat(priceElement.getAttribute('data-basePrice'));
+  document.querySelectorAll(".price").forEach(priceElement => {
+  const basePrice = parseFloat(priceElement.getAttribute("data-basePrice"));
+
     if (rates && rates[newCurrency]) {
       const convertedPrice = (basePrice * rates[newCurrency]).toFixed(2);
       priceElement.textContent = `${convertedPrice} ${newCurrency}`;
     } else {
-      console.error('Rates not available for:', newCurrency);
-      priceElement.textContent = 'Error: Rates not available';
+      console.error("Rates not available for:, newCurrency");
+      priceElement.textContent = "Error: Rates not available";
     }
   });
 }
@@ -172,7 +160,7 @@ onAuthStateChanged(authService, async (user) => {
   }
 });  
 
-/*---------------------------------*/
+/*--------------------------------------------------------------*/
 
 //menu
 currencyToggle.addEventListener ("click", (e) => {
@@ -181,9 +169,9 @@ currencyToggle.addEventListener ("click", (e) => {
 });
 
 // filter
-filterToggle.addEventListener('click', (e) => {
+filterToggle.addEventListener("click", (e) => {
   e.preventDefault();
-  filterMenu.classList.toggle('filter-menu--visible');
+  filterMenu.classList.toggle("filter-menu--visible");
 });
 
 
@@ -211,7 +199,7 @@ uploadToggleForm.addEventListener("click", (e) => {
    
  /*---------------------------------------------------------*/
   
- 
+ //https://firebase.google.com/docs/auth/web/password-auth
  
 removeErrorsOnInput(emailInput, passwordInput, emailError, passwordError);
 
@@ -224,27 +212,6 @@ signUpForm.addEventListener("input", () => {
       signUpError
   );
 });
-
-signInButton.addEventListener("click", async (e) => {
-  e.preventDefault();
-  if (validateSignInForm(
-    emailInput.value.trim(), 
-    passwordInput.value.trim(), 
-    emailError, 
-    passwordError)) {
-      try {
-          await signInWithEmailAndPassword(
-           authService, 
-           emailInput.value.trim(),
-           passwordInput.value.trim());
-           signInForm.reset();
-          displayLoggedInState();
-      } catch (err) {
-          errorMessage.textContent = err.message;
-      }
-   }
-});
-
 
 signUpButton.addEventListener("click", async (e) => {
   e.preventDefault();
@@ -262,11 +229,31 @@ signUpButton.addEventListener("click", async (e) => {
             signUpPassword.value.trim());
             signUpForm.reset();
             displayLoggedOutState();
-            signUpFormContainer.style.display = 'none';
+            signUpFormContainer.style.display = "none";
       } catch (error) {
           signUpError.textContent = error.message;
       }
     }
+});
+
+signInButton.addEventListener("click", async (e) => {
+  e.preventDefault();
+  if (validateSignInForm(
+    emailInput.value.trim(), 
+    passwordInput.value.trim(), 
+    emailError, 
+    passwordError)) {
+      try {
+          await signInWithEmailAndPassword(
+           authService, 
+           emailInput.value.trim(),
+           passwordInput.value.trim());
+           signInForm.reset();
+          displayLoggedInState();
+      } catch (error) {
+          errorMessage.textContent = err.message;
+      }
+   }
 });
 
 
@@ -281,7 +268,7 @@ signOutButton.addEventListener("click", async (e) => {
 });
 
 
-onAuthStateChanged(authService, (user) => {
+onAuthStateChanged(authService, (user) => {  //https://firebase.google.com/docs/auth/web/start#web-modular-api_3
   if (user) {
       displayLoggedInState();
       fetchAndRenderImages(); 
@@ -292,20 +279,20 @@ onAuthStateChanged(authService, (user) => {
 }); 
  /*-----------------------------------------------------------*/
 
-uploadForm.addEventListener('submit', async function(event) {
+uploadForm.addEventListener("submit", async function(event) {
   event.preventDefault();
   const imageInput = document.querySelector(".image-input");
   const user = authService.currentUser;
   if (!user) {
-      alert('You must be signed in to upload images.');
+      alert("You must be signed in to upload images.");
       return;
   }
 
-
+           //Upload form
          if (imageForm(titleInput, priceInput, sizeInput, imageInput, imageError)) {
          const imageFile = imageInput.files[0];
          if (imageFile) {
-              const storageRef = ref(storage, `images/${user.uid}/${imageFile.name}`);
+              const storageRef = ref(storage, `images/${user.uid}/${imageFile.name}`); //https://firebase.google.com/docs/storage/web/upload-files
               const metadata = {
               contentType: imageFile.type,
               customMetadata: {
@@ -316,8 +303,11 @@ uploadForm.addEventListener('submit', async function(event) {
                   "size": sizeInput.value
               }
           };
-
+                  
           const snapshot = await uploadBytes(storageRef, imageFile, metadata);
+          
+          //https://firebase.google.com/docs/firestore/quickstart
+         // https://firebase.google.com/docs/storage/web/download-files
           const url = await getDownloadURL(snapshot.ref);
           await addDoc(collection(database, "images"), {
               url,
@@ -332,14 +322,16 @@ uploadForm.addEventListener('submit', async function(event) {
 
           fetchAndRenderImages();
           uploadForm.reset(); 
-          imageInput.style.display = 'block';
-          alert('Image uploaded successfully!');
+          imageInput.style.display = "block"; 
+          alert("Image uploaded successfully!");
       } else {
-          alert('Please select an image file to upload.');
+          alert("Please select an image file to upload.");
       }
-  }
+   }
 }); 
-      /*----------------------------------------------------------------*/
+
+/*--------------------------------------------------------------------------*/
+
 
 document.addEventListener('DOMContentLoaded', () => {
   sortingSelect.addEventListener('change', () => fetchAndRenderImages(searchInput.value.trim()));
@@ -358,13 +350,13 @@ async function fetchAndRenderImages(searchTerm = '') {
   let userImages = collection(database, "images");
   let queryConstraint = query(userImages, where("userId", "==", user.uid));
 
-  if (searchTerm) {
+  if (searchTerm) {   // ref: https://firebase.google.com/docs/firestore/query-data/multiple-range-fields
       queryConstraint = query(userImages,
          where("userId", "==", user.uid),
          where("title_lowercase", ">=", searchTerm.toLowerCase()), 
          where("title_lowercase", "<=", searchTerm.toLowerCase() + '\uf8ff'));
   }
-
+  // ref: https://firebase.google.com/docs/firestore/manage-data/add-data
   const querySnapshot = await getDocs(queryConstraint);
   let images = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
@@ -377,23 +369,23 @@ function applySortingAndFiltering(images) {
   const selectedSize = sizeSelect.value;
 
 
-  if (selectedPriceRange === '100-200$') {
+  if (selectedPriceRange === "100-200$") {
       images = images.filter(image => parseFloat(image.price) >= 100 && parseFloat(image.price) <= 200);
-  } else if (selectedPriceRange === '200-300$') {
+  } else if (selectedPriceRange === "200-300$") {
       images = images.filter(image => parseFloat(image.price) >= 200 && parseFloat(image.price) <= 300);
   }
 
   
-  if (selectedSize === '30 x 30cm') {
-      images = images.filter(image => image.size === '30 x 30cm');
-  } else if (selectedSize === '40 x 50cm') {
-      images = images.filter(image => image.size === '40 x 50cm');
+  if (selectedSize === "30 x 30cm") {
+      images = images.filter(image => image.size === "30 x 30cm");
+  } else if (selectedSize === "40 x 50cm") {
+      images = images.filter(image => image.size === "40 x 50cm");
   }
 
 
-  if (sortOption === 'price-low-to-high') {
+  if (sortOption === "price-low-to-high") {
       images.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
-  } else if (sortOption === 'price-high-to-low') {
+  } else if (sortOption === "price-high-to-low") {
       images.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
   }
 
@@ -404,32 +396,66 @@ function applySortingAndFiltering(images) {
 
 
 function displayLoggedInState() {
-  mainContentContainer.style.display = 'flex';
-  signInForm.style.display = 'none'; 
-  signOutButton.style.display = 'block';
-  uploadForm.style.display = 'block';
+  mainContentContainer.style.display = "flex";
+  signInForm.style.display = "none"; 
+  signOutButton.style.display = "block";
+  uploadForm.style.display = "block";
   accountFormButton.style.display = "none";
   uploadContainer.style.display = "block";
   currencyContainer.style.display ="block";
   signInFormContainer.style.display ="block";
-  
+  frontpageContainer.style.display ="none"; 
 }
-
 
 function displayLoggedOutState() {
   signOutButton.style.display = "none";
-  mainContentContainer.style.display = 'none';
-  signInForm.style.display = 'flex';
-  uploadForm.style.display = 'none';
+  mainContentContainer.style.display = "none";
+  signInForm.style.display = "flex";
+  uploadForm.style.display = "none";
   accountFormButton.style.display = "block";
   uploadContainer.style.display = "none";
   currencyContainer.style.display ="none";
   signInFormContainer.style.display ="none";
-
-
+  frontpageContainer.style.display ="block";
 }  
 
 
+/*-------------------------------------------------------*/
+
+const frontpageContainer = document.querySelector (".frontpage-container");
+const frontpage = document.querySelector(".frontpage");
+
+class CreateImage {
+    constructor(src) {  
+        this.src = src;
+        
+    }
+
+    addImg(frontpage) {
+        const imgElement = document.createElement("img");
+       
+
+        imgElement.src = this.src;
+
+        imgElement.classList.add("frontpage-image");
+     
+
+        frontpage.append(imgElement); 
+    }
+}
+
+const frontpageImages = [
+    new CreateImage("../src/assets/01.png"), 
+  /*  new CreateImage("../src/assets/02.png"), */
+    new CreateImage("../src/assets/03.png"),
+    new CreateImage("../src/assets/04.png"),
+    new CreateImage("../src/assets/05.png"),
+    new CreateImage("../src/assets/06.png" ),
+];
+
+frontpageImages.forEach(frontpageImage => {
+    frontpageImage.addImg(frontpage);
+});
 
 
 

@@ -1,7 +1,7 @@
 
 
 
-function imageValidationForm(titleInput, descriptionInput, imageInput, imageError) {
+function imageForm(titleInput, descriptionInput, imageInput, imageError) {
     let errorStatus = false;
     if (!imageInput.value || !titleInput.value || !descriptionInput.value) {
         errorStatus = true;

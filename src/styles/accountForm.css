@@ -7,10 +7,10 @@
 .account-form-button,
 .sign-out-button{ 
       cursor: pointer;
-      height: 2.5rem;
-      width:  3rem;
-      margin-top: var(--spacing-medium);
-}
+     /* height: 2.5rem;
+      width:  3rem;   */
+      margin-top: 0.8rem; 
+}  
 
 .sign-in-form-close {
       
@@ -25,6 +25,7 @@
 
 /*------------------------------*/
 .sign-in-form-container{ 
+      position: absolute;
       display: none;        
 } 
 
@@ -36,6 +37,7 @@
    gap: var(--spacing-small); 
    border: 1px solid var(--color-primary);
   padding: var(--spacing-medium); 
+  background-color:var(--color-secondary);
 }  
 
 
@@ -55,6 +57,7 @@
       padding: var(--spacing-medium); 
       margin-right: var(--spacing-medium); 
       margin-left: var(--spacing-medium);
+      background-color:var(--color-secondary);
 }
 
 /*--------------------------------------*/

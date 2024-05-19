@@ -1,15 +1,15 @@
 
 
-
 .upload-toggleform {
-    border: 1px solid var(--color-main);
+      background-color: transparent;
+    border: 1px solid var(--color-main); 
     padding-left: var(--spacing-small);
     padding-right: var(--spacing-small);
-    background-color: transparent;
-    margin-top: var(--spacing-medium);
-    height: 2.5rem;
-    width:  3rem;
- }
+
+   /* margin-top: var(--spacing-medium);*/
+    height: 1.9rem;
+    width:  3rem;  
+ } 
  
  .upload-menu{
      display: none;
