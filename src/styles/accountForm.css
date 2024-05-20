@@ -6,39 +6,41 @@
 
 .account-form-button,
 .sign-out-button{ 
-      cursor: pointer;
+      cursor: pointer; 
       margin-top: 0.8rem;
       display: block;
 }  
+.sign-in-form-container {
+      color: var(	--color-primary);
 
+}
 .sign-in-form-close {
       
       align-self: flex-end;
       margin-bottom: var(--spacing-small);
-      border: var(--secondary-color) ;
-      color: var(--primary-color);
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
+      border: 1px solid var(--secondary-color) ;
+      color: var(--color-primary); 
+      padding: 0.3rem 0.5rem;
+      background-color: transparent;
   }
 
-/*------------------------------*/
+  
 .sign-in-form-container{ 
       position: absolute;
       display: none;        
 } 
 
 .sign-in-form{
-   display: none;   
+   display: none; 
+    
    margin: var(--spacing-medium);
    flex-direction: column;
    align-items: center; 
    gap: var(--spacing-small); 
-   border: 1px solid var(--color-primary);
-  padding: var(--spacing-medium); 
-  background-color:var(--color-secondary);
+   border: 2px solid var(--color-primary);
+   padding: var(--spacing-medium); 
+   background-color:var(--color-secondary);
 }  
-
-/*-------------------*/
 
 .sign-up-form{
       display:none;
@@ -49,15 +51,17 @@
       position: relative;
       bottom: var(--spacing-medium);
       flex-direction: column;
-      align-items: center; 
-      border: 1px solid var(--color-primary);
-      padding: var(--spacing-medium); 
-      margin-right: var(--spacing-medium); 
-      margin-left: var(--spacing-medium);
-      background-color:var(--color-secondary);
-}
 
-/*--------------------------------------*/
+      margin: var(--spacing-medium);
+      flex-direction: column;
+      align-items: center; 
+      gap: var(--spacing-small); 
+      border: 2px solid var(--color-primary);
+      padding: var(--spacing-medium); 
+      background-color:var(--color-secondary);
+   }  
+
+
 
 
 .sign-in-form label,
@@ -73,3 +77,31 @@ label{
     height: 1.5rem;
 }
 
+.sign-up-button, .sign-in-button, .signup-form-open{
+      border: 1px solid var(--secondary-color);
+      padding: 0.3rem;
+      color: var(--color-primary);
+      background-color: transparent;
+      
+}
+.account-form-button:hover,
+.sign-out-button:hover,
+.sign-up-button:hover,
+.sign-in-button:hover,
+.signup-form-open:hover {
+    background-color: var(--secondary-color); 
+    color: var(--color-secondary); 
+}
+
+
+    @media (min-width: 450px) {
+        .sign-in-form-container {
+            display: flex;
+            justify-content: flex-end; 
+            width: 60%;
+            padding-right: var(--spacing-large);
+            margin-left: 13rem;
+            margin-top: 6rem;
+        }
+
+    }
