@@ -250,10 +250,11 @@ signInButton.addEventListener("click", async (e) => {
            passwordInput.value.trim());
            signInForm.reset();
           displayLoggedInState();
+
       } catch (error) {
           errorMessage.textContent = err.message;
-      }
-   }
+       }
+    }
 });
 
 
@@ -262,6 +263,7 @@ signOutButton.addEventListener("click", async (e) => {
   try {
       await signOut(authService);
       displayLoggedOutState();
+    
   } catch (error) {
       console.error("Sign out failed: ", error);
   }
@@ -394,7 +396,7 @@ function applySortingAndFiltering(images) {
 
 
 const frontpageContainer = document.querySelector (".frontpage-container");
-
+const mainNavigation = document.querySelector (".main-navigation");
 
 function displayLoggedInState() {
   mainContentContainer.style.display = "flex";
@@ -406,9 +408,12 @@ function displayLoggedInState() {
   currencyContainer.style.display ="block";
   signInFormContainer.style.display ="block";
   frontpageContainer.style.display ="none"; 
-}
+  document.body.style.backgroundColor = "rgb(96, 255, 189)";
+ mainNavigation.style.backgroundColor = "#3114E5";
+            
+} 
 
-function displayLoggedOutState() {
+  function displayLoggedOutState() {
   signOutButton.style.display = "none";
   mainContentContainer.style.display = "none";
   signInForm.style.display = "flex";
@@ -418,6 +423,8 @@ function displayLoggedOutState() {
   currencyContainer.style.display ="none";
   signInFormContainer.style.display ="none";
   frontpageContainer.style.display ="block";
+  document.body.style.backgroundColor = "#ff4362"; 
+  mainNavigation.style.backgroundColor = "rgb(130, 126, 115)";
 }  
 
 
