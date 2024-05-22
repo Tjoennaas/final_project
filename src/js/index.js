@@ -1,6 +1,6 @@
 
 import { firebaseConfig } from "./firebaseConfig";
-/*import { API_KEY } from "./key"; */
+import { API_KEY } from "./key"; 
 
 import { initializeApp } from "firebase/app";
 import {
@@ -464,8 +464,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
- const showAllItems = document.querySelector(".show-all-items");
- showAllItems.addEventListener("click", () => {
+ const resetSearchFieldButton = document.querySelector(".reset-search-field-button");
+ resetSearchFieldButton.addEventListener("click", () => {
    searchInput.value = ""; 
    fetchAndRenderImages(); 
  });
