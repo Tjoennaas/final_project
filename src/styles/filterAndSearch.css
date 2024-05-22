@@ -78,12 +78,11 @@
   /*----------------*/
 
   
-  .reset-serch-field-button{
-
-    border: 1px solid var(--color-primary); 
-    color: var(--color-primary); 
-    padding: 0.3rem 0.5rem;
-   /* background-color: transparent;*/
+  .reset-search-field-button{
+   border: 1px solid var(--secondary-color);
+      padding: 0.5rem;
+      color: var(--color-primary);
+      background-color: transparent;
   }
 
   .reset-search-field{
@@ -99,4 +98,5 @@
   
   }
 
+  /*--------------------------*/
   
