@@ -1,5 +1,8 @@
 
 
+
+
+
 .currency-container {
   height: 1.8rem;
   width:  3rem;
@@ -8,13 +11,18 @@
  /* border: 1px solid var(--color-main); } */
   
 .currency-toggle {
-  border: 1px solid var(--color-main);
+   margin-top: 0.3rem;
+   color:rgb(78, 255, 78) ;
+   border: 1px solid rgb(78, 255, 78);
    background-color: transparent;
    height: 1.9rem;
    width:  3rem; 
    cursor: pointer;
   }   
-
+  .currency-toggle:hover{
+      background-color: var(--secondary-color); 
+      color: var(--color-secondary); 
+  }
   /*-----------------------*/
 
 .currency-menu {
@@ -22,6 +30,7 @@
   }  
 
 .currency-menu--visible {
+    color:var(--color-main) ;
     display: flex;
     flex-direction: column;
     background-color: var(--color-secondary);
@@ -36,4 +45,5 @@
   .currency-option:hover {
     background-color: var(--color-tertiary);
   }
+  
   
