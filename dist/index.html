@@ -34,12 +34,12 @@
       <img class="sign-out-button" src ="../src/assets/Frame15.svg" alt="">
       
     
-      <div class = "upload-container">
+     <div class = "upload-container"> 
       <button class="upload-toggleform">+</button>
       <div class = "upload-menu">
        
       <form class="upload-form">
-        <input type="file" class="image-input" accept="image/*" required>
+        <input type="file" class="image-input" accept="image/*" required>  <!--https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file-->
         <input type="text" class="title-input" placeholder="Enter image title" required>
         <input type="text" class="size-input" placeholder="Enter image size" required>
         <input type="text" class="price-input" value="  USD" required>
@@ -128,46 +128,56 @@
          </div>
        </div>
    <!-- </div> -->
-     
+    
+   
+       <div class="content-main-container"> 
+        <div class="search-section">
+        <input type="text" class="search-input" placeholder="Search images...">
+        <button class="search-button"> <img src="../src/assets/Frame14.svg" alt=""></button> 
+       <button class = "show-all-items">Show all image</button>
+       
+    
+       
 
-     <div class="content-main-container"> 
-     <div class="search-section">
-     <input type="text" class="search-input" placeholder="Search images...">
-     <button class="search-button"> <img src="../src/assets/Frame14.svg" alt=""></button> 
-    
-           
-           <div class="accordion">
-             <button class="filter-toggle">Filter</button> 
-               <div class="filter-menu">
-    
-           <select class="price-filter">
-             <option class="choose-price">Choose price...</option>
-             <option value="100-200$">100 - 200$</option>
-             <option value="200-300$">200 - 300$</option>
-           </select>
-                     
-                    
-                     <select class ="size">
-                         <option class="choose-size">Choose size..</option>
-                         <option value="30 x 30cm" class="size-smal">30 x 30cm</option>
-                         <option value="40 x 50cm" class="size-larg">40 x 50cm</option>
-                     </select>
-              
-     
-                     <select class="sorting">
-                         <option class="sorting">Sort..</option>
-                         <option value="price-low-to-high">Price low to high</option>
-                         <option value="price-high-to-low">Price high to low</option>
-                     </select> 
+
+            <div class="accordion">
+              <button class="filter-toggle">Filter</button>
+              <div class="filter-menu">
+
+
+                <div class="filter-category price-filter">
+                  <div class="filter-toggle-button">Choose price...</div>
+                  <div class="filter-options">
+                    <div class="filter-option" data-value="all">Show all</div>
+                    <div class="filter-option" data-value="100-200$">100 - 200$</div>
+                    <div class="filter-option" data-value="200-300$">200 - 300$</div>
+                  </div>
                 </div>
-           </div>
-     </div>
-     
-       <div class="images-container"></div>
-b
-     <!-- </div>  -->
+                
+                <div class="filter-category size-filter">
+                  <div class="filter-toggle-button">Choose size...</div>
+                  <div class="filter-options">
+                    <div class="filter-option" data-value="all">Show all</div>
+                    <div class="filter-option" data-value="30 x 30cm">30 x 30cm</div>
+                    <div class="filter-option" data-value="40 x 50cm">40 x 50cm</div>
+                  </div>
+                </div>
+                
+                <div class="filter-category sorting-filter">
+                  <div class="filter-toggle-button">Sort...</div>
+                  <div class="filter-options">
+                    <div class="filter-option" data-value="price-low-to-high">Price low to high</div>
+                    <div class="filter-option" data-value="price-high-to-low">Price high to low</div>
+                  </div>
+                </div>
+            
+              </div>
+            </div>
+
+
       
-    <script src="./bundle.js"></script>
+          <div class="images-container"></div> 
     
+    <script src="./bundle.js"></script>
 </body>
 </html>
