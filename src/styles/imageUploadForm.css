@@ -1,6 +1,6 @@
 
  
-.upload-toggleform {
+.upload-image-button {
     background-color: transparent;
     margin-top: 0.8rem;
     color:rgb(78, 255, 78) ;
@@ -10,15 +10,15 @@
     height: 1.9rem;
     width:  3rem;  
  } 
- .upload-toggleform:hover{
+ .upload-image-button:hover{
     background-color: var(--secondary-color); 
     color: var(--color-secondary); 
 }
- .upload-menu{
+ .upload-image-menu{
      display: none;
  }
  
- .upload-menu--visible{
+ .upload-image-menu--visible{
      position: absolute;
      left: 6rem;
      background-color:var(--color-secondary);
@@ -28,13 +28,13 @@
      flex-direction: column;
  }
  
- .upload-form input {
+ .upload-image-form input {
      display: flex;
      flex-direction: column;   
  }
  
- .upload-form input,
- .upload-form button {
+ .upload-image-form input,
+ .upload-image-form button {
        color: var(--color-primary);
        margin-bottom: var(--spacing-small); 
        width: 100%; 
@@ -58,7 +58,7 @@
        box-shadow: 0 8px 8px rgba(0, 0, 0, 0.4); 
  } 
 
-.container{
+.image-content{
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -104,7 +104,7 @@
 
 @media (min-width: 400px) {
 
-    .upload-menu--visible {
+    .upload-image-menu--visible {
         display: flex;
         justify-content: flex-end;  
     /*   width: 60%; */

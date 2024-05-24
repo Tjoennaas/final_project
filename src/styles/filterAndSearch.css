@@ -112,7 +112,9 @@
 
   .reset-search-field-button:hover,
   .filter-toggle:hover {
+    color: var(--color-secondary);
     background-color: var(--secondary-color); 
+
   
   }
 

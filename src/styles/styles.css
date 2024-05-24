@@ -1,6 +1,7 @@
 
 
 body {
+
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
    /* font-size: x-large;*/
@@ -25,27 +26,31 @@ body {
   }
 
 nav {
-  background-color:  rgb(130, 126, 115);
+    
+
+ background-color:  rgb(130, 126, 115); 
+
   color: rgb(78, 255, 78);
  /* border-bottom: 0.6rem solid var(--secondary-color); */
     display: flex; 
     flex-direction: row; 
     align-items: center;  
     padding: var(--spacing-medium); 
+    margin-bottom: 1rem;
 } 
 
 nav header {
     flex-grow: 1; 
 } 
  
-.navigation-button {
+.navigation-buttons {
     display: flex; 
     flex-direction: row;
     gap: var(--spacing-medium);
     align-items: center; 
 }
 
-  .content-main-container{
+  .user-frontpage{
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -56,14 +61,17 @@ nav header {
     color: rgb(78, 255, 78);
     display: block;
     border: 3px solid black;
-    background-color:  rgb(130, 126, 115);
+   background-color:  rgb(130, 126, 115); 
+  /* background-color:  rgb(208, 251, 212); */
     padding: 5rem;
-
+ 
   }
 
 /*------------------------------*/
 
-  .frontpage {
+
+  .frontpage-content {
+    
     margin-top: 6rem;
     display: flex; 
     flex-direction: column;
@@ -71,12 +79,11 @@ nav header {
     justify-content: center; 
     gap: 3rem;
     align-items: center; 
-
     border-radius: 0.2rem; 
     margin: 2rem; 
     padding: 1rem; 
     overflow: hidden;  
-  }
+  }  
 
   .frontpage-img {
     display: flex;

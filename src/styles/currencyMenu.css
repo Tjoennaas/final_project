@@ -30,7 +30,7 @@
   }  
 
 .currency-menu--visible {
-    color:var(--color-main) ;
+    color: var(--color-primary);
     display: flex;
     flex-direction: column;
     background-color: var(--color-secondary);
