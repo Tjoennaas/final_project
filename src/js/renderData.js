@@ -7,7 +7,7 @@ function renderData(images) {
     imagesContainer.innerText = " "; 
 
     images.forEach((image) => {
-        const container = document.createElement("div");
+        const imageContent = document.createElement("div");
         const imageElement = document.createElement("img");
         const textContainer = document.createElement("div");
         const titleElement = document.createElement("p");
@@ -24,24 +24,25 @@ function renderData(images) {
          priceElement.textContent = `Price: ${basePrice.toFixed(2)} ${displayCurrency}`; 
          deleteButton.textContent = "x";                                   
         
-        container.classList.add("container");                                        
+        imageContent.classList.add("image-content");                                      
         textContainer.classList.add("text-container");
         titleElement.classList.add("title-image")
         sizeElement.classList.add("size-image")
         imageElement.classList.add("uploaded-image");
         deleteButton.classList.add("delete-button");
         priceElement.classList.add("price");
+        deleteButton.classList.add ("delet-button");
         priceElement.setAttribute("data-basePrice", basePrice); 
        
        
         imagesContainer.appendChild(
-            container
+            imageContent
         );
 
-        container.append(
+        imageContent.append(
             imageElement,
             textContainer,
-           /* deleteButton */
+
         );
 
         textContainer.append(
@@ -59,7 +60,7 @@ function renderData(images) {
             try {
                 await deleteDoc(docRef);
                 await deleteObject(storageRef);
-                container.remove();
+                imageContent.remove();
             } catch (error) {
                 console.error("Error removing image: ", error);
                 alert('Failed to delete image!');

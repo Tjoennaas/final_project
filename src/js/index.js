@@ -1,6 +1,6 @@
 
 import { firebaseConfig } from "./firebaseConfig";
-import { API_KEY } from "./key"; 
+/*import { API_KEY } from "./key"; */
 
 import { initializeApp } from "firebase/app";
 import {
@@ -78,11 +78,11 @@ const signOutButton = document.querySelector(".sign-out-button");
 
 const signUpFormContainer = document.querySelector(".sign-up-form-container");
 const signUpFormOpen = document.querySelector(".signup-form-open");
-const signInFormContainer = document.querySelector(".sign-in-form-container");
+const accountFormContainer = document.querySelector(".account-form-container");
 const signInFormClose = document.querySelector(".sign-in-form-close");
 
-const uploadToggleForm = document.querySelector(".upload-toggleform");
-const uploadMenu = document.querySelector(".upload-menu");
+const uploadImageButton = document.querySelector(".upload-image-button");
+const uploadImageMenu = document.querySelector(".upload-image-menu");
 const filterToggle = document.querySelector(".filter-toggle");
 const filterMenu = document.querySelector(".filter-menu");
 
@@ -92,9 +92,9 @@ const currencyMenu = document.querySelector(".currency-menu");
 const currencyOptions = document.querySelectorAll(".currency-option");
 
 const accountFormButton = document.querySelector(".account-form-button");
-const uploadContainer = document.querySelector(".upload-container");
-const mainContentContainer = document.querySelector(".content-main-container");
-const uploadForm = document.querySelector(".upload-form");
+const uploadImageContainer= document.querySelector(".upload-image-container");
+const UserFrontpage = document.querySelector(".user-frontpage");
+const uploadForm = document.querySelector(".upload-image-form");
 
 const titleInput = document.querySelector(".title-input");
 const priceInput = document.querySelector(".price-input");
@@ -206,20 +206,20 @@ filterToggle.addEventListener("click", (e) => {
 
 
 // Upload image toggle
-uploadToggleForm.addEventListener("click", (e) => {
+uploadImageButton.addEventListener("click", (e) => {
   e.preventDefault();
-  uploadMenu.classList.toggle("upload-menu--visible");
+uploadImageMenu.classList.toggle("upload-image-menu--visible");
 });
 
 // Account form toggle
 accountFormButton.addEventListener("click", (e) => {
   e.preventDefault();
-  signInFormContainer.style.display = "block";
+  accountFormContainer.style.display = "block";
 });
 
 signInFormClose.addEventListener("click", (e) => {
   e.preventDefault();
-  signInFormContainer.style.display = "none";
+  accountFormContainer.style.display = "none";
 });
 
 signUpFormOpen.addEventListener("click", (e) => {
@@ -474,34 +474,36 @@ document.addEventListener('DOMContentLoaded', () => {
 /*------------------------*/
 
 
-
 const frontpageContainer = document.querySelector(".frontpage-container");
-const mainNavigation = document.querySelector(".main-navigation");
+const navigation = document.querySelector(".navigation");
 
 function displayLoggedInState() {
-  mainContentContainer.style.display = "flex";
+  UserFrontpage.style.display = "flex";
   signInForm.style.display = "none";
   signOutButton.style.display = "block";
   uploadForm.style.display = "block";
   accountFormButton.style.display = "none";
-  uploadContainer.style.display = "block";
+ uploadImageContainer.style.display = "block"; 
   currencyContainer.style.display = "block";
-  signInFormContainer.style.display = "block";
+  accountFormContainer.style.display = "block";
   frontpageContainer.style.display = "none";
-  document.body.style.backgroundColor = "rgb(96, 255, 189)";
-  mainNavigation.style.backgroundColor = "#3114E5";
+ document.body.style.backgroundColor = "rgb(208, 251, 212)"; 
+  navigation.style.backgroundColor = "#3114E5";
 }
 
 function displayLoggedOutState() {
   signOutButton.style.display = "none";
-  mainContentContainer.style.display = "none";
+  UserFrontpage.style.display = "none";
   signInForm.style.display = "flex";
   uploadForm.style.display = "none";
   accountFormButton.style.display = "block";
-  uploadContainer.style.display = "none";
+  uploadImageContainer.style.display = "none"; 
+
   currencyContainer.style.display = "none";
-  signInFormContainer.style.display = "none";
+  accountFormContainer.style.display = "none";
   frontpageContainer.style.display = "block";
-  document.body.style.backgroundColor = "#ff4362";
-  mainNavigation.style.backgroundColor = "rgb(130, 126, 115)";
+ /* document.body.style.backgroundColor = "#ff4362"; */
+
+  document.body.style.backgroundColor =  "rgb(208, 251, 212)"; 
+  navigation.style.backgroundColor = "rgb(130, 126, 115)";
 }
