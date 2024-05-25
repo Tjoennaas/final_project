@@ -2,121 +2,119 @@
 
 body {
 
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-   /* font-size: x-large;*/
-    background-color: var(--secondary-color);
- 
-    width: 100%;
-    height: 100vh;
-  
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    padding: 0.6rem;
+     color: var(--color-tertiary-1);
+     display: flex;
+     flex-direction: column;
+     padding: var(--spacing-small);
+     font-family: 'Open Sans', sans-serif;
+     font-weight: 300;
+     width: 100%;
+     height: 100vh;
   }
-  header, .heander-frontpage {
-    font-size: xx-large;
-    font-weight: 400;
 
+  /* ---- navigation ---- */
+
+  header, .heander-frontpage {
+
+     font-size: xx-large;
+     font-weight: 400;
   }
  
   .heander-frontpage {
+
     padding: var(--spacing-medium);
   }
 
-nav {
-    
+ nav { 
 
- background-color:  rgb(130, 126, 115); 
-
-  color: rgb(78, 255, 78);
- /* border-bottom: 0.6rem solid var(--secondary-color); */
-    display: flex; 
-    flex-direction: row; 
-    align-items: center;  
-    padding: var(--spacing-medium); 
-    margin-bottom: 1rem;
+     background-color: var(--color-tertiary);
+     display: flex; 
+     flex-direction: row; 
+     align-items: center;  
+     padding: var(--spacing-medium); 
+     margin-bottom: var(--spacing-medium); 
 } 
 
-nav header {
-    flex-grow: 1; 
+ nav header {
+
+     flex-grow: 1; 
 } 
- 
-.navigation-buttons {
-    display: flex; 
-    flex-direction: row;
-    gap: var(--spacing-medium);
-    align-items: center; 
+
+ .navigation-buttons {
+
+      display: flex; 
+      flex-direction: row;
+      gap: var(--spacing-medium);
+      align-items: center; 
 }
 
-  .user-frontpage{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  /* --- Frontpage ------ */
+
+.frontpage-container{ 
+
+      display: block;
+      border: 3px solid var(--color-main );
+      background-color: var(--color-tertiary); 
+      padding: 5rem;
   }
-
-  .frontpage-container{ 
-
-    color: rgb(78, 255, 78);
-    display: block;
-    border: 3px solid black;
-   background-color:  rgb(130, 126, 115); 
-  /* background-color:  rgb(208, 251, 212); */
-    padding: 5rem;
- 
-  }
-
-/*------------------------------*/
-
 
   .frontpage-content {
-    
-    margin-top: 6rem;
-    display: flex; 
-    flex-direction: column;
-    flex-wrap: wrap; 
-    justify-content: center; 
-    gap: 3rem;
-    align-items: center; 
-    border-radius: 0.2rem; 
-    margin: 2rem; 
-    padding: 1rem; 
-    overflow: hidden;  
+
+       margin-top: var(--border);
+       display: flex; 
+       flex-direction: column;
+       flex-wrap: wrap; 
+       justify-content: center; 
+       gap: var(--spacing-xlarge);
+       align-items: center; 
+       border-radius: 0.2rem; 
+       margin: var(--spacing-large); 
+       padding: var(--spacing-medium); 
+       overflow: hidden;  
   }  
 
+/* ----- Account fromtpage ------ */
+
+  .user-frontpage{
+
+       display: flex;
+       flex-direction: column;
+       width: 100%;
+}
+
   .frontpage-img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 200%;
-    min-width: 60%; 
-  }
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 200%;
+      min-width: 60%; 
+ }
 
 
 .frontpage-img img{
-    width: 200%;
-    margin: 10px; 
-    min-width: 60%; 
+
+      width: 200%;
+      margin: 10px; 
+      min-width: 60%; 
 }  
 
 .frontpage-text {
-  position: absolute;
-  top: 5rem;
-  max-width: 200%; 
-  text-align: center;
+
+     position: absolute;
+     top: 5rem;
+     max-width: 200%; 
+     text-align: center;
 }
 
 @media (min-width: 768px) {
-  .frontpage-img {
-    width: 150%;
-    margin-left: -8rem;
-    display: flex;
-    align-self: start;
-    justify-content: start;
-  }
-  nav{
-    background-color: var(--color-main);
+.frontpage-img {
+  
+      width: 150%;
+      margin-left: -8rem;
+      display: flex;
+      align-self: start;
+      justify-content: start;
   }
 }

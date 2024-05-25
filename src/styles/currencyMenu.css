@@ -1,49 +1,55 @@
 
 
-
-
-
 .currency-container {
-  height: 1.8rem;
-  width:  3rem;
-  /*margin-top: 1rem; */
-  position: relative; }
- /* border: 1px solid var(--color-main); } */
-  
-.currency-toggle {
-   margin-top: 0.3rem;
-   color:rgb(78, 255, 78) ;
-   border: 1px solid rgb(78, 255, 78);
-   background-color: transparent;
-   height: 1.9rem;
-   width:  3rem; 
-   cursor: pointer;
-  }   
-  .currency-toggle:hover{
-      background-color: var(--secondary-color); 
-      color: var(--color-secondary); 
-  }
-  /*-----------------------*/
+
+       position: relative; 
+       height: 1.8rem; 
+       height: var(--spacing-large);
+       width: var(--spacing-xlarge);
+ } 
 
 .currency-menu {
-    display: none ;
-  }  
+
+        display: none ;
+}  
 
 .currency-menu--visible {
-    color: var(--color-primary);
-    display: flex;
-    flex-direction: column;
-    background-color: var(--color-secondary);
- 
-  }
-  
-  .currency-option {
-    padding: 8px 8px; 
-    cursor: pointer;
-  }
 
-  .currency-option:hover {
-    background-color: var(--color-tertiary);
-  }
+       color: var(--color-primary);
+       display: flex;
+       flex-direction: column;    
+       background-color: var(--color-secondary-1);
+}
   
+.currency-option {
+
+        cursor: pointer;
+        padding: 8px 8px;      
+}
+
+.currency-option:hover {
+
+        background-color: var(--color-tertiary);
+}
+
+.currency-toggle {
+
+      cursor: pointer;
+      margin-top: var(--spacing-small); 
+      color: var(--color-tertiary-1);
+      border: 1px solid var(--color-tertiary-1);
+      background-color: transparent;
+      height: 1.9rem;
+      width: var(--spacing-xlarge); 
+  
+  }   
+  .currency-toggle:hover{
+
+      background-color: var(--color-secondary); 
+      color: var(--color-secondary-1); 
+  }
+ 
+
+
+ 
   

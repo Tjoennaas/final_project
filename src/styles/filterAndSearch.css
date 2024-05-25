@@ -1,62 +1,81 @@
+   
+  /* ----- Filter buttons ----- */
 
 
-.filter-menu {
+  .filter-toggle {
 
- /* color: var(--color-secondary);*/
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-  justify-content: center;
+    cursor: pointer;
+    color: var(--color-primary);
+    text-align: center;
+    background-color: var(--color-secondary-1);
+    border: 1px solid var(--color-secondary);
+    background-color: transparent;
+    padding: var(--spacing-small);
+    width: 100%;
+  }
 
-}
+.filter-menu{
+
+      display: none;
+   }
+
+.filter-menu--visible {
+
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     gap: var(--spacing-small);
+   }  
 
 .filter-options {
-  display: none;
+
+     display: none;
 }
 
 .filter-options--visible {
-  color: var(--color-secondary);
-  display: flex;
-  flex-direction: column;
 
-  cursor: pointer;
-  padding: 1.5rem;
-  background-color: var(--secondary-color);
+   color: var(--color-secondary-1);
+   display: flex;
+   flex-direction: column;
+   cursor: pointer;
+   padding: var(--spacing-medium);
+   background-color: var(--color-secondary);
 }
 
 .filter-option.selected {
-  background-color: var(--color-primary);
+
+    background-color: var(--color-primary);
 }
 
 .filter-toggle-button {
-  color: 	var(--color-secondary);
-  cursor:pointer;
-  padding: 10px;
 
-  border: 1px solid var(--secondary-color);
-  border-radius: 0.1rem;
-  background-color: var( --color-primary );
-  margin: 5px 0;
+   color: var(--color-secondary-1);
+   cursor:pointer;
+   padding: var(--spacing-small);
+   border: 1px solid var(--color-secondary);
+   background-color: var(--color-primary );
+  /* margin: 5px 0; */
 }
 
-/*-----------*/
+/* ----- Search input ------ */
 
 
 .search-input{
+
     display: flex;
     flex-direction: row;
-    gap: 3rem;
+    gap: var( --spacing-xlarge);
     width: 100%;
     margin-top: var(--spacing-medium);
-    padding-left: 3rem;
+    padding-left: var( --spacing-xlarge);
     height: var(--spacing-large);
-   /* border: 1px solid  var(--color-primary); */
-    border: 1px solid var(--secondary-color);
+    border: 1px solid var(--color-secondary);
   }
   
   .search-button{
+
     cursor: pointer;
-    height: 1.5rem;
+    height: var(--spacing-medium);
     position:relative;
     top: -1.7rem; 
     padding-left: var(--spacing-medium);
@@ -64,6 +83,7 @@
     background-color: transparent; 
   }
   
+  /*
   select {
     display: flex;
     flex-direction: column;
@@ -71,54 +91,37 @@
      cursor: pointer;
      border-bottom: 1px solid var(--color-primary); 
      width: 100%;
-    }  
-    
- .filter-toggle {
-     color: var(--color-primary);
-     text-align: center;
-     cursor: pointer;
-     background-color: var(--color-secondary);
-   /*  border: 1px solid var(--color-primary); */
-   border: 1px solid var(--secondary-color);
-     background-color: transparent;
-     padding: 10px;
-     width: 100%;
-    }
-    
-    .filter-menu{
-       display: none;
-    }
-    
-    .filter-menu--visible {
-      display: flex;
-    }  
+    }  */
 
-  /*----------------*/
+  
+ 
+  /* ------ Reset search field ---------- */
 
   
   .reset-search-field-button{
-   border: 1px solid var(--secondary-color);
-      padding: 0.5rem;
+
+      border: 1px solid var(--color-secondary);
+      padding: var(--spacing-small);
       color: var(--color-primary);
       background-color: transparent;
   }
 
   .reset-search-field{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-bottom: 2rem;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin-bottom: var(--spacing-large);
   }
 
   .reset-search-field-button:hover,
   .filter-toggle:hover {
-    color: var(--color-secondary);
-    background-color: var(--secondary-color); 
 
-  
+       color: var(--color-secondary-1);
+       background-color: var(--color-secondary); 
   }
 
-  /*--------------------------*/
+/* ----------------------------- */
   
   
 @media (min-width: 450px) {
