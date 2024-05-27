@@ -5,6 +5,7 @@ import { firebaseConfig } from "./firebaseConfig";
 import { initializeApp } from "firebase/app";
 
 
+
 //ref: https://firebase.google.com/docs/auth/web/password-auth
 //ref: https://firebase.google.com/docs/auth/web/start
 //ref: https://firebase.google.com/docs/auth/web/manage-users
@@ -41,6 +42,7 @@ import{
 // ref: https://firebase.google.com/docs/storage/web/create-reference
 // ref: https://firebase.google.com/docs/storage/web/upload-files
 // ref: https://firebase.google.com/docs/storage/web/download-files
+
 // Using storag to uplod images in firebase. 
 
 import { 
@@ -49,6 +51,7 @@ import {
    uploadBytes, //uploads images to storage.
    getDownloadURL // Get the download URL for a file.
    } from "firebase/storage";
+
 
 import {
   validateSignInForm,
@@ -69,9 +72,6 @@ const app = initializeApp(firebaseConfig);
 const authService = getAuth(app); 
 const database = getFirestore(app); 
 const storage = getStorage(app); 
-
-// ref: https://firebase.google.com/docs/auth/web/manage-users
-
 
 
 
@@ -163,6 +163,7 @@ let currencyRates = {}; //Will store exchang rat for chosen currencies
   });
 });
 
+
 //Fetch the api currency
 
  async function fetchCurrencyRates() {
@@ -183,6 +184,8 @@ let currencyRates = {}; //Will store exchang rat for chosen currencies
   }
 
 }
+
+
 // Load the currency to the webpage from firebase
 
 async function loadUserCurrencySetting() {  //Loads the users currensy preferanse from  firestore to the websithe
@@ -240,7 +243,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 onAuthStateChanged(authService, async (user) => {
   if (user) {
       await fetchCurrencyRates(); 
-      await loadUserCurrencySetting(); // Load user's currency setting
+      await loadUserCurrencySetting(); 
       fetchAndRenderImages();
   } else {
       displayLoggedOutState();
@@ -391,7 +394,7 @@ uploadImageForm.addEventListener("submit", async function (event) {
   if (imageForm(titleInput, priceInput, sizeInput, imageInput, imageError)) {
     const imageFile = imageInput.files[0];
     if (imageFile) {
-      const storageRef = ref(storage, `images/${user.uid}/${imageFile.name}`); //ref: https://firebase.google.com/docs/storage/web/upload-files
+      const storageRef = ref(storage, `images/${user.uid}/${imageFile.name}`); 
       const metadata = {
           contentType: imageFile.type,
           customMetadata: {
@@ -546,13 +549,20 @@ function applySortingAndFiltering(images) {
 
 document.addEventListener('DOMContentLoaded', () => {
   searchButton.addEventListener('click', () => fetchAndRenderImages(searchInput.value.trim()));
-});
 
+  
+  searchInput.addEventListener('input', () => {
+    const searchTerm = searchInput.value.trim();
+    if (searchTerm === '') {
+      fetchAndRenderImages(); // Reset filter when input is empty
+    } 
+  });
+})
 
  const resetSearchFieldButton = document.querySelector(".reset-search-field-button");
  resetSearchFieldButton.addEventListener("click", () => {
-   searchInput.value = ""; 
-   fetchAndRenderImages(); 
+   searchInput.value = "";
+fetchAndRenderImages(); 
  });
 
 
