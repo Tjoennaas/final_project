@@ -3,29 +3,52 @@ import { firebaseConfig } from "./firebaseConfig";
 /*import { API_KEY } from "./key"; */
 
 import { initializeApp } from "firebase/app";
+
+
+//ref: https://firebase.google.com/docs/auth/web/password-auth
+//ref: https://firebase.google.com/docs/auth/web/start
+//ref: https://firebase.google.com/docs/auth/web/manage-users
+
 import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signOut,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
+  getAuth, 
+  createUserWithEmailAndPassword, //Allows new users to register with the app using email address and a password.
+  signOut, //To sign out user.
+  signInWithEmailAndPassword, //Signs in to the app, with email address and password.
+  onAuthStateChanged, // When a user are signs in, get information about the user in the observer.
 } from "firebase/auth";
-import {
+
+
+
+//ref:  https://firebase.google.com/docs/firestore
+
+import{
   getFirestore,
-  collection,
-  addDoc,
-  getDocs,
-  query,
-  where,
-  doc,
-  setDoc,
-  getDoc,
+  doc, //Creates a reference to a specific document.
+  addDoc, //Add new document to a collection.
+  setDoc, // Ensure that  metadata is stored with a specific document ID
+  getDoc, //Retrieves document from Firestore.
+  getDocs, //Retrieves all documents from a collection.
+  collection,  // Allow users to store and retrieve metadata withimages.
+  query, //Specifies the criteria for selecting documents from a collection.
+  where,  //Filters documents based on specific values.
+
 } from "firebase/firestore";
+
+
+
+
+
+// ref: https://firebase.google.com/docs/storage/web/create-reference
+// ref: https://firebase.google.com/docs/storage/web/upload-files
+// ref: https://firebase.google.com/docs/storage/web/download-files
+// Using storag to uplod images in firebase. 
+
 import { 
-  getStorage,
-   ref, 
-   uploadBytes,
-   getDownloadURL } from "firebase/storage";
+   getStorage, 
+   ref, //Points to the root of my storage.
+   uploadBytes, //uploads images to storage.
+   getDownloadURL // Get the download URL for a file.
+   } from "firebase/storage";
 
 import {
   validateSignInForm,
@@ -36,131 +59,153 @@ import {
   validateSignUpForm,
   removeSignUpErrorOnInput,
 } 
-
 from "./signUpValidation";
+
 import { renderData } from "./renderData";
 import { imageForm } from "./imageValidationForm";
+import { API_KEY } from "./key";
 
-const app = initializeApp(firebaseConfig);
-const authService = getAuth(app); //ref: https://firebase.google.com/docs/auth/web/start#web-modular-api_2
-const database = getFirestore(app);
-const storage = getStorage(app); //ref: https://firebase.google.com/docs/storage/web/upload-files
+const app = initializeApp(firebaseConfig); 
+const authService = getAuth(app); 
+const database = getFirestore(app); 
+const storage = getStorage(app); 
 
+// ref: https://firebase.google.com/docs/auth/web/manage-users
+
+
+
+
+/* ------- Select elements in HTML ------------ */
+
+
+const UserFrontpage = document.querySelector(".user-frontpage");
+
+// Forms and buttons for sign in, up and out.
+
+const accountFormContainer = document.querySelector(".account-form-container");
+const accountFormButton = document.querySelector(".account-form-button");
 
 const emailInput = document.querySelector(".email");
 const passwordInput = document.querySelector(".password");
 const signInButton = document.querySelector(".sign-in-button");
+const signInForm = document.querySelector(".sign-in-form");
+const signInFormClose = document.querySelector(".sign-in-form-close");
 const emailError = document.querySelector(".email-error");
 const passwordError = document.querySelector(".password-error");
-const signInForm = document.querySelector(".sign-in-form");
 const errorMessage = document.querySelector(".error-message");
 
-const priceFilterToggle = document.querySelector('.price-filter .filter-toggle-button');
-const sizeFilterToggle = document.querySelector('.size-filter .filter-toggle-button');
-const sortingFilterToggle = document.querySelector('.sorting-filter .filter-toggle-button');
-
-const priceFilterOptions = document.querySelectorAll('.price-filter .filter-option');
-const sizeFilterOptions = document.querySelectorAll('.size-filter .filter-option');
-const sortOptions = document.querySelectorAll('.sorting-filter .filter-option');
-
-const searchInput = document.querySelector(".search-input");
-const searchButton = document.querySelector(".search-button");
-
+const signUpFormContainer = document.querySelector(".sign-up-form-container");
+const signUpForm = document.querySelector(".sign-up-form");
 const signUpFirstname = document.querySelector(".firstname");
 const signUpLastname = document.querySelector(".lastname");
 const signUpEmail = document.querySelector(".sign-up-email");
 const signUpPassword = document.querySelector(".sign-up-password");
 const signUpButton = document.querySelector(".sign-up-button");
+const signUpFormOpen = document.querySelector(".signup-form-open");
 const signUpError = document.querySelector(".sign-up-error");
-const signUpForm = document.querySelector(".sign-up-form");
 
 const signOutButton = document.querySelector(".sign-out-button");
 
-const signUpFormContainer = document.querySelector(".sign-up-form-container");
-const signUpFormOpen = document.querySelector(".signup-form-open");
-const accountFormContainer = document.querySelector(".account-form-container");
-const signInFormClose = document.querySelector(".sign-in-form-close");
 
-const uploadImageButton = document.querySelector(".upload-image-button");
-const uploadImageMenu = document.querySelector(".upload-image-menu");
+//Search, filter button, filter option.
+
+const searchInput = document.querySelector(".search-input");
+const searchButton = document.querySelector(".search-button");
+
 const filterToggle = document.querySelector(".filter-toggle");
 const filterMenu = document.querySelector(".filter-menu");
+
+const priceFilterOptions = document.querySelectorAll(".price-filter .filter-option");
+const sizeFilterOptions = document.querySelectorAll(".size-filter .filter-option");
+const sortOptions = document.querySelectorAll(".sorting-filter .filter-option");
+
+
+//Currensy form and image form.
+
+const uploadImageContainer= document.querySelector(".upload-image-container");
+const uploadImageMenu = document.querySelector(".upload-image-menu");
+const uploadImageForm = document.querySelector(".upload-image-form");
+const uploadImageButton = document.querySelector(".upload-image-button");
+const titleInput = document.querySelector(".title-input");
+const priceInput = document.querySelector(".price-input");
+const sizeInput = document.querySelector(".size-input");
+const imageError = document.querySelector(".image-error");
 
 const currencyContainer = document.querySelector(".currency-container");
 const currencyToggle = document.querySelector(".currency-toggle");
 const currencyMenu = document.querySelector(".currency-menu");
 const currencyOptions = document.querySelectorAll(".currency-option");
 
-const accountFormButton = document.querySelector(".account-form-button");
-const uploadImageContainer= document.querySelector(".upload-image-container");
-const UserFrontpage = document.querySelector(".user-frontpage");
-const uploadForm = document.querySelector(".upload-image-form");
-
-const titleInput = document.querySelector(".title-input");
-const priceInput = document.querySelector(".price-input");
-const sizeInput = document.querySelector(".size-input");
-const imageError = document.querySelector(".image-error");
 
 
-/*--------------------*/
+/* ------ Fecth and render currency -------- */
 
 
-let currentCurrency = "USD";
-let currencyRates = [];
 
-currencyOptions.forEach(option => {
-  option.addEventListener("click", () => {
-    const selectedCurrency = option.dataset.currency;
-    currentCurrency = selectedCurrency;
-    if (authService.currentUser) {
+let currentCurrency = "USD"; //Defult value.
+let currencyRates = {}; //Will store exchang rat for chosen currencies
 
-      updateCurrencyInFirestore(
-        authService.currentUser.uid,  //ref https://firebase.google.com/docs/auth/web/manage-users
-        currentCurrency
-      );
-    }
 
-    updatePrices(currentCurrency, currencyRates);
-    currencyOptions.forEach(opt => opt.classList.remove("selected"));
-    option.classList.add("selected");
+//Add click event listeners that allows users to select a currency
+
+  currencyOptions.forEach(currencyOption => {
+  currencyOption.addEventListener("click", () => {
+  const selectedCurrency = currencyOption.dataset.currency; //The data-currency attribute in the HTML element, becomes dataset.currency in javascript
+  currentCurrency = selectedCurrency; //Updates the currentCurrency to the newly selected currency. 
+  
+  if (authService.currentUser ) {
+    
+    updateCurrencyInFirestore( authService.currentUser.uid , currentCurrency);//Saves the user's currency preference if they are signed in.
+  }
+    updatePrices(currentCurrency, currencyRates); //Updates the prices based on the selected currency.
+    currencyOptions.forEach(currencyOption => currencyOption.classList.remove("selected-currency"));//Remove the selected class from option
+    currencyOption.classList.add("selected-currency");   // Add "selected" class to the clicked option
   });
 });
 
-async function fetchCurrencyRates() {
-  const url = `https://v6.exchangerate-api.com/v6/${API_KEY}/latest/USD`;
+//Fetch the api currency
+
+ async function fetchCurrencyRates() {
+ const url = `https://v6.exchangerate-api.com/v6/${API_KEY}/latest/USD`; 
+  console.log(API_KEY);
 
   try {
-    const response = await fetch(url);
-    const data = await response.json();
-    currencyRates = data.conversion_rates;
-    if (authService.currentUser) {
-      loadUserCurrencySetting();
+    const response = await fetch(url);   //sends HTTP request to the url and waits for the respons.
+    const data = await response.json(); //The parsed JSON object is assigned to data variable.
+    currencyRates = data.conversion_rates; //Assigns the value of data.conversion_rates to currencyRates, for updating prices based on different currencies.
+    if  ( authService.currentUser)  {
+      loadUserCurrencySetting(); //If the user is sign in sett the prefered currensy
     } else {
-      updatePrices(currentCurrency, currencyRates);
+      updatePrices(currentCurrency, currencyRates); //if the user is not sign in?
     }
   } catch (error) {
     console.error("Error fetching currency rates", error);
   }
-}
 
-async function loadUserCurrencySetting() {
-  const userCurrencyRef = doc(database, "userPreferences", authService.currentUser.uid);
-  const docSnap = await getDoc(userCurrencyRef);
-  if (docSnap.exists() && docSnap.data().currency) {
-    currentCurrency = docSnap.data().currency;
-    updatePrices(currentCurrency, currencyRates);
+}
+// Load the currency to the webpage from firebase
+
+async function loadUserCurrencySetting() {  //Loads the users currensy preferanse from  firestore to the websithe
+  const userCurrencyRef = doc(database, "userPreferences", authService.currentUser.uid ); //Creates a reference to a document in the Firestore.
+  const docSnap = await getDoc(userCurrencyRef); //Fetching the document.
+  if (docSnap.exists() && docSnap.data().currency) { //Cheks if the document exsist and if it contais a currensy. 
+    currentCurrency = docSnap.data().currency; //To get the preferd currensy from firestore.
+    updatePrices(currentCurrency, currencyRates); // Updates the prices displayed on the website.
   } else {
     console.log("No currency preference found, using default.");
   }
 }
 
+
+//update the new currency
+
 async function updatePrices(newCurrency, rates) {
   document.querySelectorAll(".price").forEach(priceElement => {
-    const basePrice = parseFloat(priceElement.getAttribute("data-basePrice"));
+    const basePrice = parseFloat(priceElement.getAttribute("data-basePrice"));// parsfloat convert a string to a number.And the basePrice holdes the numrik value.
 
-    if (rates && rates[newCurrency]) {
-      const convertedPrice = (basePrice * rates[newCurrency]).toFixed(2);
-      priceElement.textContent = `${convertedPrice} ${newCurrency}`;
+    if (rates && rates[newCurrency]) { // Check if the rates object and newCurrensy exsists.
+      const convertedPrice = (basePrice * rates[newCurrency]).toFixed(2); // Calculate the converted price.
+      priceElement.textContent = `${convertedPrice} ${newCurrency}`; // Update the text to show the converted price and the new currency.
     } else {
       console.error("Rates not available for:", newCurrency);
       priceElement.textContent = "Error: Rates not available";
@@ -168,10 +213,19 @@ async function updatePrices(newCurrency, rates) {
   });
 }
 
+
+// Update currency in firestore
+
 async function updateCurrencyInFirestore(userId, newCurrency) {
-  const userCurrencyRef = doc(database, "userPreferences", userId);
+  const userCurrencyRef = doc(
+        database,
+       "userPreferences", 
+        userId
+    );
   try {
-    await setDoc(userCurrencyRef, { currency: newCurrency }, { merge: true });
+    await setDoc(userCurrencyRef, 
+      { currency: newCurrency }, 
+      { merge: true });
     console.log("Currency saved.");
   } catch (error) {
     console.error("Error saving currency preference:", error);
@@ -182,14 +236,19 @@ document.addEventListener('DOMContentLoaded', async () => {
   await fetchCurrencyRates();
 });
 
+
 onAuthStateChanged(authService, async (user) => {
   if (user) {
-    await fetchCurrencyRates();  //ref: https://firebase.google.com/docs/auth/web/start#web-modular-api_3
+      await fetchCurrencyRates(); 
+      await loadUserCurrencySetting(); // Load user's currency setting
+      fetchAndRenderImages();
+  } else {
+      displayLoggedOutState();
+      renderData([]);
   }
 });
 
-
-/*-----------------------*/
+/* ---------- Buttons and accordions ------------- */
 
 
 // currency toggle
@@ -228,10 +287,7 @@ signUpFormOpen.addEventListener("click", (e) => {
 });
 
 
-
-
-/*-------------------*/
-
+/* -------- Account forms ----------- */
 
 
 // Remove errors on input
@@ -262,7 +318,9 @@ signUpButton.addEventListener("click", async (e) => {
         authService,
         signUpEmail.value.trim(),
         signUpPassword.value.trim()
+
       );
+
       signUpForm.reset();
       displayLoggedOutState();
       signUpFormContainer.style.display = "none";
@@ -272,14 +330,15 @@ signUpButton.addEventListener("click", async (e) => {
   }
 });
 
+
 // Sign in
 signInButton.addEventListener("click", async (e) => {
   e.preventDefault();
   if (validateSignInForm(
-    emailInput.value.trim(),
-    passwordInput.value.trim(),
-    emailError,
-    passwordError
+       emailInput.value.trim(),
+       passwordInput.value.trim(),
+       emailError,
+       passwordError
   )) {
     try {
       await signInWithEmailAndPassword(
@@ -287,12 +346,12 @@ signInButton.addEventListener("click", async (e) => {
         emailInput.value.trim(),
         passwordInput.value.trim()
       );
-      signInForm.reset();
-      displayLoggedInState();
-    } catch (error) {
-      errorMessage.textContent = error.message;
-    }
-  }
+        signInForm.reset();
+        displayLoggedInState();
+     }  catch (error) {
+        errorMessage.textContent = error.message;
+     }
+   }
 });
 
 // Sign out
@@ -317,14 +376,13 @@ onAuthStateChanged(authService, (user) => {
 });
 
 
-/*-----------------------*/
+/* --------- upload images ------------- */
 
 
-// Upload form submission
-uploadForm.addEventListener("submit", async function (event) {
-  event.preventDefault();
-  const imageInput = document.querySelector(".image-input");
-  const user = authService.currentUser;
+uploadImageForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      const imageInput = document.querySelector(".image-input");
+      const user = authService.currentUser;
   if (!user) {
     alert("You must be signed in to upload images.");
     return;
@@ -335,8 +393,8 @@ uploadForm.addEventListener("submit", async function (event) {
     if (imageFile) {
       const storageRef = ref(storage, `images/${user.uid}/${imageFile.name}`); //ref: https://firebase.google.com/docs/storage/web/upload-files
       const metadata = {
-        contentType: imageFile.type,
-        customMetadata: {
+          contentType: imageFile.type,
+          customMetadata: {
           title: titleInput.value,
           title_lowercase: titleInput.value.toLowerCase(),
           price: priceInput.value,
@@ -359,7 +417,7 @@ uploadForm.addEventListener("submit", async function (event) {
       });
 
       fetchAndRenderImages();
-      uploadForm.reset();
+      uploadImageForm.reset();
       imageInput.style.display = "block";
       alert("Image uploaded successfully!");
     } else {
@@ -369,45 +427,65 @@ uploadForm.addEventListener("submit", async function (event) {
 });
 
 
-/*--------------------*/
-
-// sort, filter and serch 
+/* --------  sort, filter and serch  images ---------- */
 
 
-toggleFilterOptions(priceFilterToggle, document.querySelector(".price-filter .filter-options"));
-toggleFilterOptions(sizeFilterToggle, document.querySelector(".size-filter .filter-options"));
-toggleFilterOptions(sortingFilterToggle, document.querySelector(".sorting-filter .filter-options"));
-function toggleFilterOptions(filterToggle, filterOptionsContainer) {
-  filterToggle.addEventListener('click', () => {
-    filterOptionsContainer.classList.toggle('filter-options--visible');
+// Set up event listeners to manage filter categories
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const filterCategories = document.querySelectorAll(".filter-category"); 
+
+  filterCategories.forEach(filterCategory => {
+    const filterToggleButton = filterCategory.querySelector(".filter-toggle-button");
+    const filterOptions = filterCategory.querySelector(".filter-options");
+    const filterOption = filterCategory.querySelectorAll(".filter-option");
+
+    toggleFilterOptions(filterToggleButton, filterOptions);
+
+    updateFilterState(filterOption, "selected-filter-option");
   });
-} 
+});
 
-function updateFilterState(options, selectedClass) {
-  options.forEach(option => {
+function toggleFilterOptions(filterToggleButton, filterOptions) {
+  filterToggleButton.addEventListener('click', () => {
+    filterOptions.classList.toggle("filter-options--visible");
+  });
+}
+
+function updateFilterState(filterOption, selectedFilterOption) {
+  filterOption.forEach(option => {
     option.addEventListener('click', () => {
-      options.forEach(opt => opt.classList.remove(selectedClass));
-      option.classList.add(selectedClass);
+      filterOption.forEach(option => option.classList.remove(selectedFilterOption));
+      option.classList.add(selectedFilterOption);
       fetchAndRenderImages(searchInput.value.trim());
     });
   });
 }
 
-updateFilterState(priceFilterOptions, "selected");
-updateFilterState(sizeFilterOptions, "selected");
-updateFilterState(sortOptions, "selected");
 
-function getSelectedFilterValue(options) {
- const selectedOption = Array.from(options).find(option => option.classList.contains("selected"));
-return selectedOption ? selectedOption.getAttribute("data-value") : "all";
-}
+function getSelectedFilterValue(filterOption) {
+  
+  const selectedOption = Array.from(filterOption)
+        .find(option => option.classList.contains("selected-filter-option"));
+
+  if (selectedOption) {
+     return selectedOption.getAttribute("data-value");
+  }  else {
+    return "all";
+  }
+} 
+
+
 
 async function fetchAndRenderImages(searchTerm = "") {
-  const user = authService.currentUser;    // ref: https://firebase.google.com/docs/firestore/query-data/multiple-range-fields
+  const user = authService.currentUser; 
   if (!user) {
     renderData([]);
     return;
   }
+
+  //Apply sorting and filtering based on user criteria. 
 
   let userImages = collection(database, "images");
   let queryConstraint = query(userImages, where("userId", "==", user.uid));
@@ -420,11 +498,16 @@ async function fetchAndRenderImages(searchTerm = "") {
   }
 
 
-  const querySnapshot = await getDocs(queryConstraint);   // ref: https://firebase.google.com/docs/firestore/manage-data/add-data
+  const querySnapshot = await getDocs(queryConstraint);   
   let images = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
+
   applySortingAndFiltering(images);
+  updatePrices(currentCurrency, currencyRates);  
+
 }
+
+
 
 function applySortingAndFiltering(images) {
   const sortOption = getSelectedFilterValue(sortOptions);
@@ -442,7 +525,7 @@ function applySortingAndFiltering(images) {
 
   if (selectedSize !== "all") {
     if (selectedSize === "30 x 30cm") {
-      images = images.filter(image => image.size = "30 x 30cm");
+      images = images.filter(image => image.size === "30 x 30cm");
     } else if (selectedSize === "40 x 50cm") {
       images = images.filter(image => image.size === "40 x 50cm" );
     }
@@ -455,9 +538,11 @@ function applySortingAndFiltering(images) {
       images.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
     }
   }
-
-  renderData(images);
+  renderData(images, currentCurrency, currencyRates); 
+ 
 }
+
+// Logic to the search input
 
 document.addEventListener('DOMContentLoaded', () => {
   searchButton.addEventListener('click', () => fetchAndRenderImages(searchInput.value.trim()));
@@ -481,13 +566,13 @@ function displayLoggedInState() {
   UserFrontpage.style.display = "flex";
   signInForm.style.display = "none";
   signOutButton.style.display = "block";
-  uploadForm.style.display = "block";
+  uploadImageForm.style.display = "block";
   accountFormButton.style.display = "none";
- uploadImageContainer.style.display = "block"; 
+  uploadImageContainer.style.display = "block"; 
   currencyContainer.style.display = "block";
   accountFormContainer.style.display = "block";
   frontpageContainer.style.display = "none";
- document.body.style.backgroundColor = "rgb(208, 251, 212)"; 
+  document.body.style.backgroundColor = "rgb(208, 251, 212)"; 
   navigation.style.backgroundColor = "#3114E5";
 }
 
@@ -495,15 +580,12 @@ function displayLoggedOutState() {
   signOutButton.style.display = "none";
   UserFrontpage.style.display = "none";
   signInForm.style.display = "flex";
-  uploadForm.style.display = "none";
+  uploadImageForm.style.display = "none";
   accountFormButton.style.display = "block";
   uploadImageContainer.style.display = "none"; 
-
   currencyContainer.style.display = "none";
   accountFormContainer.style.display = "none";
   frontpageContainer.style.display = "block";
- /* document.body.style.backgroundColor = "#ff4362"; */
-
   document.body.style.backgroundColor =  "rgb(208, 251, 212)"; 
   navigation.style.backgroundColor = "rgb(130, 126, 115)";
 }
