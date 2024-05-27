@@ -13,6 +13,11 @@
         display: none ;
 }  
 
+.currency-option.selected {
+        background-color:var(--color-primary);
+        color: var(--color-secondary-1);
+      }
+
 .currency-menu--visible {
 
        color: var(--color-primary);
@@ -27,9 +32,10 @@
         padding: 8px 8px;      
 }
 
-.currency-option:hover {
+.currency-option.selected-currency {
 
-        background-color: var(--color-tertiary);
+        background-color: var(--color-primary);
+        color: var(--color-secondary-1);
 }
 
 .currency-toggle {
