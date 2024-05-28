@@ -1,7 +1,6 @@
 
 import { firebaseConfig } from "./firebaseConfig";
-/*import { API_KEY } from "./key"; */
-
+import { API_KEY } from "./key"; 
 import { initializeApp } from "firebase/app";
 
 
@@ -17,6 +16,7 @@ import {
   signInWithEmailAndPassword, //Signs in to the app, with email address and password.
   onAuthStateChanged, // When a user are signs in, get information about the user in the observer.
 } from "firebase/auth";
+
 
 
 
@@ -64,9 +64,10 @@ import {
 } 
 from "./signUpValidation";
 
-import { renderData } from "./renderData";
-import { imageForm } from "./imageValidationForm";
-import { API_KEY } from "./key";
+import {renderData  }from "./renderData";
+
+/*import { imageForm } from "./imageValidationForm";*/
+
 
 const app = initializeApp(firebaseConfig); 
 const authService = getAuth(app); 
@@ -103,7 +104,6 @@ const signUpPassword = document.querySelector(".sign-up-password");
 const signUpButton = document.querySelector(".sign-up-button");
 const signUpFormOpen = document.querySelector(".signup-form-open");
 const signUpError = document.querySelector(".sign-up-error");
-
 const signOutButton = document.querySelector(".sign-out-button");
 
 
@@ -129,7 +129,7 @@ const uploadImageButton = document.querySelector(".upload-image-button");
 const titleInput = document.querySelector(".title-input");
 const priceInput = document.querySelector(".price-input");
 const sizeInput = document.querySelector(".size-input");
-const imageError = document.querySelector(".image-error");
+
 
 const currencyContainer = document.querySelector(".currency-container");
 const currencyToggle = document.querySelector(".currency-toggle");
@@ -140,10 +140,8 @@ const currencyOptions = document.querySelectorAll(".currency-option");
 
 /* ------ Fecth and render currency -------- */
 
-
-
 let currentCurrency = "USD"; //Defult value.
-let currencyRates = {}; //Will store exchang rat for chosen currencies
+let currencyRates = {}; //Will store exchang rat for chosen currencies.
 
 
 //Add click event listeners that allows users to select a currency
@@ -158,8 +156,8 @@ let currencyRates = {}; //Will store exchang rat for chosen currencies
     updateCurrencyInFirestore( authService.currentUser.uid , currentCurrency);//Saves the user's currency preference if they are signed in.
   }
     updatePrices(currentCurrency, currencyRates); //Updates the prices based on the selected currency.
-    currencyOptions.forEach(currencyOption => currencyOption.classList.remove("selected-currency"));//Remove the selected class from option
-    currencyOption.classList.add("selected-currency");   // Add "selected" class to the clicked option
+    currencyOptions.forEach(currencyOption => currencyOption.classList.remove("selected-currency"));//Remove the selected class from option.
+    currencyOption.classList.add("selected-currency"); // Add "selected" class to the clicked option.
   });
 });
 
@@ -171,24 +169,23 @@ let currencyRates = {}; //Will store exchang rat for chosen currencies
   console.log(API_KEY);
 
   try {
-    const response = await fetch(url);   //sends HTTP request to the url and waits for the respons.
+    const response = await fetch(url); //Sends HTTP request to the url and waits for the respons.
     const data = await response.json(); //The parsed JSON object is assigned to data variable.
     currencyRates = data.conversion_rates; //Assigns the value of data.conversion_rates to currencyRates, for updating prices based on different currencies.
     if  ( authService.currentUser)  {
-      loadUserCurrencySetting(); //If the user is sign in sett the prefered currensy
+      loadUserCurrencySetting(); //If the user is sign in sett the prefered currensy.
     } else {
-      updatePrices(currentCurrency, currencyRates); //if the user is not sign in?
+      updatePrices(currentCurrency, currencyRates); //If the user is not sign in.
     }
   } catch (error) {
     console.error("Error fetching currency rates", error);
   }
-
 }
 
 
 // Load the currency to the webpage from firebase
 
-async function loadUserCurrencySetting() {  //Loads the users currensy preferanse from  firestore to the websithe
+async function loadUserCurrencySetting() {  //Loads the users currensy preferanse from  firestore to the websithe.
   const userCurrencyRef = doc(database, "userPreferences", authService.currentUser.uid ); //Creates a reference to a document in the Firestore.
   const docSnap = await getDoc(userCurrencyRef); //Fetching the document.
   if (docSnap.exists() && docSnap.data().currency) { //Cheks if the document exsist and if it contais a currensy. 
@@ -204,7 +201,7 @@ async function loadUserCurrencySetting() {  //Loads the users currensy preferans
 
 async function updatePrices(newCurrency, rates) {
   document.querySelectorAll(".price").forEach(priceElement => {
-    const basePrice = parseFloat(priceElement.getAttribute("data-basePrice"));// parsfloat convert a string to a number.And the basePrice holdes the numrik value.
+    const basePrice = parseFloat(priceElement.getAttribute("data-basePrice"));// Parsfloat convert a string to a number.And the basePrice holdes the numrik value.
 
     if (rates && rates[newCurrency]) { // Check if the rates object and newCurrensy exsists.
       const convertedPrice = (basePrice * rates[newCurrency]).toFixed(2); // Calculate the converted price.
@@ -213,7 +210,7 @@ async function updatePrices(newCurrency, rates) {
       console.error("Rates not available for:", newCurrency);
       priceElement.textContent = "Error: Rates not available";
     }
-  });
+ });
 }
 
 
@@ -229,9 +226,9 @@ async function updateCurrencyInFirestore(userId, newCurrency) {
     await setDoc(userCurrencyRef, 
       { currency: newCurrency }, 
       { merge: true });
-    console.log("Currency saved.");
+       console.log("Currency saved.");
   } catch (error) {
-    console.error("Error saving currency preference:", error);
+       console.error("Error saving currency preference:", error);
   }
 }
 
@@ -250,6 +247,7 @@ onAuthStateChanged(authService, async (user) => {
       renderData([]);
   }
 });
+
 
 /* ---------- Buttons and accordions ------------- */
 
@@ -378,37 +376,40 @@ onAuthStateChanged(authService, (user) => {
   }
 });
 
-
-/* --------- upload images ------------- */
-
+/* --------- Upload images ------------- */
 
 uploadImageForm.addEventListener("submit", async function (event) {
-      event.preventDefault();
-      const imageInput = document.querySelector(".image-input");
-      const user = authService.currentUser;
-  if (!user) {
-    alert("You must be signed in to upload images.");
-    return;
+  event.preventDefault();
+  const imageInput = document.querySelector(".image-input");
+  const user = authService.currentUser;
+
+
+  // Validate form fields
+  if (!imageInput.value || !titleInput.value || !sizeInput.value) {
+    alert("Please complete all the fields");
+    return; // If validation fails, stop the execution.
   }
 
-  if (imageForm(titleInput, priceInput, sizeInput, imageInput, imageError)) {
-    const imageFile = imageInput.files[0];
-    if (imageFile) {
-      const storageRef = ref(storage, `images/${user.uid}/${imageFile.name}`); 
-      const metadata = {
-          contentType: imageFile.type,
-          customMetadata: {
-          title: titleInput.value,
-          title_lowercase: titleInput.value.toLowerCase(),
-          price: priceInput.value,
-          currency: currentCurrency,
-          size: sizeInput.value
-        }
-      };
+//Ref:  https://firebase.google.com/docs/storage/web/file-metadata
+  const imageFile = imageInput.files[0];
+  if (imageFile) {
+    const storageRef = ref(storage, `images/${user.uid}/${imageFile.name}`); // Creates a reference to a storage location based on the user's unique ID and the image file's name.
+    const metadata = {   // Contains information about the file being uploaded.     
+      customMetadata: {
+        title: titleInput.value,
+        title_lowercase: titleInput.value.toLowerCase(),
+        price: priceInput.value,
+        currency: currentCurrency,
+        size: sizeInput.value
+      }
+    };
 
-      const snapshot = await uploadBytes(storageRef, imageFile, metadata);
-      const url = await getDownloadURL(snapshot.ref);
-      await addDoc(collection(database, "images"), {
+      //Ref: https://firebase.google.com/docs/storage/web/download-files
+      //Ref: https://firebase.google.com/docs/storage/web/download-files
+     
+      const snapshot = await uploadBytes(storageRef, imageFile, metadata); // Uploads the imageFile to the storage specified by storageRef
+      const url = await getDownloadURL(snapshot.ref); // Generate a URL to download the uploaded files.
+      await addDoc(collection(database, "images"), { // Add document in Firestore, to the collection named images 
         url,
         title: titleInput.value,
         title_lowercase: titleInput.value.toLowerCase(),
@@ -419,19 +420,17 @@ uploadImageForm.addEventListener("submit", async function (event) {
         storagePath: snapshot.ref.fullPath
       });
 
+
       fetchAndRenderImages();
       uploadImageForm.reset();
-      imageInput.style.display = "block";
       alert("Image uploaded successfully!");
-    } else {
-      alert("Please select an image file to upload.");
-    }
+      }  else {
+    alert("Please select an image file to upload.");
   }
 });
 
 
 /* --------  sort, filter and serch  images ---------- */
-
 
 // Set up event listeners to manage filter categories
 
@@ -451,35 +450,34 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function toggleFilterOptions(filterToggleButton, filterOptions) {
-  filterToggleButton.addEventListener('click', () => {
+    filterToggleButton.addEventListener('click', () => {
     filterOptions.classList.toggle("filter-options--visible");
   });
 }
 
 function updateFilterState(filterOption, selectedFilterOption) {
-  filterOption.forEach(option => {
+    filterOption.forEach(option => {
     option.addEventListener('click', () => {
-      filterOption.forEach(option => option.classList.remove(selectedFilterOption));
+      filterOption.forEach(option => 
+      option.classList.remove(selectedFilterOption));
       option.classList.add(selectedFilterOption);
+
       fetchAndRenderImages(searchInput.value.trim());
     });
   });
 }
 
-
 function getSelectedFilterValue(filterOption) {
   
-  const selectedOption = Array.from(filterOption)
-        .find(option => option.classList.contains("selected-filter-option"));
+const selectedOption = Array.from(filterOption)
+  .find(option => option.classList.contains("selected-filter-option"));
 
   if (selectedOption) {
      return selectedOption.getAttribute("data-value");
   }  else {
-    return "all";
+     return "all";
   }
 } 
-
-
 
 async function fetchAndRenderImages(searchTerm = "") {
   const user = authService.currentUser; 
@@ -488,10 +486,17 @@ async function fetchAndRenderImages(searchTerm = "") {
     return;
   }
 
+
   //Apply sorting and filtering based on user criteria. 
 
-  let userImages = collection(database, "images");
-  let queryConstraint = query(userImages, where("userId", "==", user.uid));
+
+  //ref: https://firebase.google.com/docs/firestore/query-data/get-data
+
+  let userImages = collection(database, "images"); //Set up a referanse to image collection to firestore
+  let queryConstraint = query(userImages, where("userId", "==", user.uid)); //Fetch document from the "images", ensure that only the images is uploaded by the current user.
+
+
+  //ref: https://stackoverflow.com/questions/38618953/how-to-do-a-simple-search-in-string-in-firebase-database
 
   if (searchTerm) {
     queryConstraint = query(userImages,
@@ -500,22 +505,23 @@ async function fetchAndRenderImages(searchTerm = "") {
       where("title_lowercase", "<=", searchTerm.toLowerCase() + "\uf8ff"));
   }
 
-
-  const querySnapshot = await getDocs(queryConstraint);   
+  const querySnapshot = await getDocs(queryConstraint); // The function returns a new object for each document snapshot 
   let images = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
 
-  applySortingAndFiltering(images);
-  updatePrices(currentCurrency, currencyRates);  
+  applySortingAndFiltering(images); //Filters the images based on certain criteria.
+
+  updatePrices(currentCurrency, currencyRates); //Adjusts the prices of the images to reflect the specified currency.
 
 }
-
-
 
 function applySortingAndFiltering(images) {
   const sortOption = getSelectedFilterValue(sortOptions);
   const selectedPriceRange = getSelectedFilterValue(priceFilterOptions);
   const selectedSize = getSelectedFilterValue(sizeFilterOptions);
+
+
+// Ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
 
   if (selectedPriceRange !== "all") {
     if (selectedPriceRange === "100-200$") {
@@ -525,7 +531,6 @@ function applySortingAndFiltering(images) {
     }
   }
 
-
   if (selectedSize !== "all") {
     if (selectedSize === "30 x 30cm") {
       images = images.filter(image => image.size === "30 x 30cm");
@@ -534,6 +539,9 @@ function applySortingAndFiltering(images) {
     }
   }
 
+
+  // Ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+
   if (sortOption !== "all") {
     if (sortOption === "price-low-to-high") {
       images.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
@@ -541,8 +549,7 @@ function applySortingAndFiltering(images) {
       images.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
     }
   }
-  renderData(images, currentCurrency, currencyRates); 
- 
+  renderData(images, currentCurrency, currencyRates);  
 }
 
 // Logic to the search input
@@ -560,7 +567,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
  const resetSearchFieldButton = document.querySelector(".reset-search-field-button");
- resetSearchFieldButton.addEventListener("click", () => {
+   resetSearchFieldButton.addEventListener("click", () => {
    searchInput.value = "";
 fetchAndRenderImages(); 
  });
