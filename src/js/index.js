@@ -192,7 +192,7 @@ async function loadUserCurrencySetting() {  //Loads the users currensy preferans
     currentCurrency = docSnap.data().currency; //To get the preferd currensy from firestore.
     updatePrices(currentCurrency, currencyRates); // Updates the prices displayed on the website.
   } else {
-    console.log("No currency preference found, using default.");
+    console.log("No currency preference found.");
   }
 }
 
@@ -213,9 +213,6 @@ async function updatePrices(newCurrency, rates) {
  });
 }
 
-
-// Update currency in firestore
-
 async function updateCurrencyInFirestore(userId, newCurrency) {
   const userCurrencyRef = doc(
         database,
@@ -228,7 +225,7 @@ async function updateCurrencyInFirestore(userId, newCurrency) {
       { merge: true });
        console.log("Currency saved.");
   } catch (error) {
-       console.error("Error saving currency preference:", error);
+       console.error("Error saving currency preference:");
   }
 }
 
@@ -405,8 +402,7 @@ uploadImageForm.addEventListener("submit", async function (event) {
     };
 
       //Ref: https://firebase.google.com/docs/storage/web/download-files
-      //Ref: https://firebase.google.com/docs/storage/web/download-files
-     
+    
       const snapshot = await uploadBytes(storageRef, imageFile, metadata); // Uploads the imageFile to the storage specified by storageRef
       const url = await getDownloadURL(snapshot.ref); // Generate a URL to download the uploaded files.
       await addDoc(collection(database, "images"), { // Add document in Firestore, to the collection named images 
@@ -533,12 +529,22 @@ function applySortingAndFiltering(images) {
 
   if (selectedSize !== "all") {
     if (selectedSize === "30 x 30cm") {
-      images = images.filter(image => image.size === "30 x 30cm");
-    } else if (selectedSize === "40 x 50cm") {
-      images = images.filter(image => image.size === "40 x 50cm" );
+      images = images.filter(image => image.size === 
+        image.size === "30 x 30cm" ||
+        image.size === "30 x 30 cm" ||
+        image.size === "30x30cm" ||
+        image.size === "30x30 cm"
+      );
     }
+     else if (selectedSize === "40 x 50cm") {
+     images = images.filter(image => image.size ===
+      image.size === "40 x 50cm" ||
+      image.size === "40 x 50 cm" ||
+      image.size === "40x50cm" ||
+      image.size === "40x50 cm"
+     );
   }
-
+}
 
   // Ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
 
