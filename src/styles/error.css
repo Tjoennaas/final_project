@@ -1,10 +1,10 @@
 
 .email-error,
 .password-error,
-.sign-up-error {
+.sign-up-error
+ {
   visibility: hidden;
+  font-weight: 600;
+  color: red;
+  
 }
-
-
-.image-error {
-  display: none;}
