@@ -104,6 +104,7 @@ const signUpPassword = document.querySelector(".sign-up-password");
 const signUpButton = document.querySelector(".sign-up-button");
 const signUpFormOpen = document.querySelector(".signup-form-open");
 const signUpError = document.querySelector(".sign-up-error");
+
 const signOutButton = document.querySelector(".sign-out-button");
 
 
@@ -323,7 +324,8 @@ signUpButton.addEventListener("click", async (e) => {
       displayLoggedOutState();
       signUpFormContainer.style.display = "none";
     } catch (error) {
-      signUpError.textContent = error.message;
+      signUpError.style.visibility = 'visible';
+      signUpError.textContent = "Please complete all the fields ⚠️";
     }
   }
 });
@@ -347,7 +349,9 @@ signInButton.addEventListener("click", async (e) => {
         signInForm.reset();
         displayLoggedInState();
      }  catch (error) {
-        errorMessage.textContent = error.message;
+      errorMessage.textContent = 'An error occurred. Please try again.';
+      errorMessage.style.visibility = 'visible';
+        
      }
    }
 });

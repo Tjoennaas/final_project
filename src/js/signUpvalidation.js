@@ -1,39 +1,36 @@
+
 const validateSignUpForm = (
   firstname,
   lastname,
   email,
   password,
-  signUpErrorMsg
+  signUpError
 ) => {
   let errorStatus = false;
   if (!firstname || !lastname || !email || !password) {
     errorStatus = true;
-    signUpErrorMsg.style.visibility = "visible";
-    signUpErrorMsg.textContent = "Please complete all the fields";
+    signUpError.style.visibilety = "visible";
   } else {
     errorStatus = false;
-    signUpErrorMsg.style.visibility = "hidden";
-    signUpErrorMsg.textContent = "";
+    signUpError.style.visibilety = "hidden";
+    signUpError.textContent = "";
   }
 
-  const signUpErrorStatus = () => {
-    return errorStatus;
-  };
-
-  return { errorStatus, signUpErrorStatus };
-};
-
-
+return { errorStatus, signUpErrorStatus: () => errorStatus };
+}; 
 
 const removeSignUpErrorOnInput = (
   firstname,
   lastname,
   email,
   password,
-  signUpErrorMsg
+  signUpError
 ) => {
   if (firstname && lastname && email && password) {
-    signUpErrorMsg.style.visibility = "hidden";
+    signUpError.style.visibilety = "hidden";
   }
-};
+}; 
+
+
+
 export { validateSignUpForm, removeSignUpErrorOnInput };

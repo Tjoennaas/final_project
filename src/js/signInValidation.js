@@ -6,8 +6,8 @@ function validateSignInForm(email, password, emailError, passError) {
   };
   if (!email && !password) {
     errors.errorStatus = true;
-    errors.emailError = "Email is required";
-    errors.passwordError = "Password is required";
+    errors.emailError = "Email is required  ⚠️ ";
+    errors.passwordError = "Password is required  ⚠️ ";
 
     emailError.style.visibility = "visible";
     passError.style.visibility = "visible";
@@ -16,7 +16,7 @@ function validateSignInForm(email, password, emailError, passError) {
     passError.textContent = errors.passwordError;
   } else if (!email) {
     errors.errorStatus = true;
-    errors.emailError = "Email is required";
+    errors.emailError = "Email is required  ⚠️ ";
     errors.passwordError = "";
 
     emailError.style.visibility = "visible";
@@ -26,7 +26,7 @@ function validateSignInForm(email, password, emailError, passError) {
   } else if (!password) {
     errors.errorStatus = true;
     errors.emailError = "";
-    errors.passwordError = "Password is required";
+    errors.passwordError = "Password is required  ⚠️ ";
 
     emailError.style.visibility = "hidden";
     passError.style.visibility = "visible";
