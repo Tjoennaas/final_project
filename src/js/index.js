@@ -1,10 +1,9 @@
 
-import { firebaseConfig } from "./firebaseConfig";
-import { API_KEY } from "./key"; 
+import { firebaseConfig } from "./firebaseConfig.js";
 import { initializeApp } from "firebase/app";
 
 
-
+ 
 //ref: https://firebase.google.com/docs/auth/web/password-auth
 //ref: https://firebase.google.com/docs/auth/web/start
 //ref: https://firebase.google.com/docs/auth/web/manage-users
@@ -56,17 +55,16 @@ import {
 import {
   validateSignInForm,
   removeErrorsOnInput,
-} from "./signInValidation";
+} from "./signInValidation.js";
 
 import {
   validateSignUpForm,
   removeSignUpErrorOnInput,
 } 
-from "./signUpValidation";
+from "./signUpValidation.js";
 
-import {renderData  }from "./renderData";
+import {renderData  }from "./renderData.js";
 
-/*import { imageForm } from "./imageValidationForm";*/
 
 
 const app = initializeApp(firebaseConfig); 
@@ -163,25 +161,44 @@ let currencyRates = {}; //Will store exchang rat for chosen currencies.
 });
 
 
-//Fetch the api currency
+/*-----------*/
 
- async function fetchCurrencyRates() {
- const url = `https://v6.exchangerate-api.com/v6/${API_KEY}/latest/USD`; 
-  console.log(API_KEY);
+
+async function fetchCurrencyRates() {
+  const url = `http://localhost:4600`; //Backend server
+  console.log("Fetching currency rates from backend server:", url);
 
   try {
-    const response = await fetch(url); //Sends HTTP request to the url and waits for the respons.
-    const data = await response.json(); //The parsed JSON object is assigned to data variable.
-    currencyRates = data.conversion_rates; //Assigns the value of data.conversion_rates to currencyRates, for updating prices based on different currencies.
-    if  ( authService.currentUser)  {
-      loadUserCurrencySetting(); //If the user is sign in sett the prefered currensy.
+    const response = await fetch(url); // Sends request to the backend server
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json(); // The JSON object is assigned to data variable
+    console.log("Fetched data from backend:", data); 
+    if (data) {
+      currencyRates = data; // Assign the value of data to currencyRates
+      console.log("Currency rates:", currencyRates); 
+
+      if (authService.currentUser) {
+        await loadUserCurrencySetting(); // If the user is signed in, set the preferred currency
+      } else {
+        updatePrices(currentCurrency, currencyRates); // If the user is not signed in, update the prices
+      }
     } else {
-      updatePrices(currentCurrency, currencyRates); //If the user is not sign in.
+      console.error("No data received from backend.");
     }
   } catch (error) {
-    console.error("Error fetching currency rates", error);
+    console.error("Error fetching currency rates:");
   }
 }
+
+// Call the function to fetch the currency rates when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', async () => {
+  await fetchCurrencyRates();
+});
+
+  
 
 
 // Load the currency to the webpage from firebase
@@ -597,7 +614,7 @@ function displayLoggedInState() {
   accountFormButton.style.display = "none";
   uploadImageContainer.style.display = "block"; 
   currencyContainer.style.display = "block";
-  accountFormContainer.style.display = "block";
+  accountFormContainer.style.display = "none"; 
   frontpageContainer.style.display = "none";
   document.body.style.backgroundColor = "rgb(208, 251, 212)"; 
   navigation.style.backgroundColor = "#3114E5";
@@ -612,6 +629,7 @@ function displayLoggedOutState() {
   uploadImageContainer.style.display = "none"; 
   currencyContainer.style.display = "none";
   accountFormContainer.style.display = "none";
+  signUpFormContainer.style.display ="block";
   frontpageContainer.style.display = "block";
   document.body.style.backgroundColor =  "rgb(208, 251, 212)"; 
   navigation.style.backgroundColor = "rgb(130, 126, 115)";

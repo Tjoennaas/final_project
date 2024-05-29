@@ -62,7 +62,7 @@ function renderData(images) {
                 await deleteObject(storageRef);
                 imageContent.remove();
             } catch (error) {
-                console.error("Error removing image: ", error);
+                console.error("Error removing image");
                 alert('Failed to delete image!');
              }
           });
@@ -70,3 +70,5 @@ function renderData(images) {
      } 
 
  export {renderData};
+
+
