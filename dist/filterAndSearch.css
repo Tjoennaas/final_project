@@ -1,0 +1,133 @@
+   
+  /* ----- Filter buttons ----- */
+
+
+  .filter-toggle {
+
+    cursor: pointer;
+    color: var(--color-primary);
+    text-align: center;
+    background-color: var(--color-secondary-1);
+    border: 1px solid var(--color-secondary);
+    background-color: transparent;
+    padding: var(--spacing-small);
+    width: 100%;
+  }
+
+.filter-menu{
+
+      display: none;
+   }
+
+.filter-menu--visible {
+
+     margin-top: var(--spacing-small);
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     gap: var(--spacing-small);
+   }  
+
+.filter-options {
+
+     display: none;
+}
+
+.filter-options--visible {
+
+   color: var(--color-secondary);
+  /* background-color: var(--color-secondary-1);*/
+    border: 1px solid var(--color-secondary); 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    padding: var(--spacing-medium);
+  
+}
+
+.filter-option .selected-filter-option {
+     background-color: var(--color-primary);
+}
+
+.selected-filter-option {
+     color: var(--color-secondary-1);
+     background-color: var(--color-primary);
+  }
+
+.filter-toggle-button {
+
+   color: var(--color-secondary-1);
+   cursor:pointer;
+   padding: var(--spacing-small);
+   border: 1px solid var(--color-secondary);
+   background-color: var(--color-primary );
+ 
+}
+
+/* ----- Search input ------ */
+
+
+.search-input{
+
+    display: flex;
+    flex-direction: row;
+    gap: var( --spacing-xlarge);
+    width: 100%;
+    margin-top: var(--spacing-medium);
+    padding-left: var( --spacing-xlarge);
+    height: var(--spacing-large);
+    border: 1px solid var(--color-secondary);
+  }
+  
+  .search-button{
+
+    cursor: pointer;
+    height: var(--spacing-medium);
+    position:relative;
+    top: -1.7rem; 
+    padding-left: var(--spacing-medium);
+    padding-right: var(--spacing-medium);
+    background-color: transparent; 
+  }
+  
+ 
+ 
+  /* ------ Reset search field ---------- */
+
+  
+  .reset-search-field-button{
+
+      border: 1px solid var(--color-secondary);
+      padding: var(--spacing-small);
+      color: var(--color-primary);
+      background-color: transparent;
+  }
+
+  .reset-search-field{
+
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin-bottom: var(--spacing-large);
+  }
+
+  .reset-search-field-button:hover,
+  .filter-toggle:hover {
+
+       color: var(--color-secondary-1);
+       background-color: var(--color-secondary); 
+  }
+
+/* ----------------------------- */
+  
+  
+@media (min-width: 450px) {
+  .filter-menu {
+      flex-direction: row;
+     
+  }
+  .filter-toggle-button{
+    width: 10rem;
+  }
+}   
